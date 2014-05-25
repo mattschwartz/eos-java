@@ -25,6 +25,25 @@ namespace EOS.app {
         public MainForm() {
             InitializeComponent();
             this.Text = "EOS — " + CurrentUser.getInstance().username;
+
+            if (!CurrentUser.getInstance().online) {
+                this.switchAccountsToolStripMenuItem.Visible = false;
+                this.logOutToolStripMenuItem.Visible = false;
+
+                this.logInToolStripMenuItem.Visible = true;
+                this.registerToolStripMenuItem.Visible = true;
+                this.signedInAsToolStripMenuItem.Text = "Not logged in";
+                this.signedInAsToolStripMenuItem.Enabled = false;
+            } else {
+                this.switchAccountsToolStripMenuItem.Visible = true;
+                this.logOutToolStripMenuItem.Visible = true;
+
+                this.logInToolStripMenuItem.Visible = false;
+                this.registerToolStripMenuItem.Visible = false;
+                this.signedInAsToolStripMenuItem.Text = "Signed in as " + CurrentUser.getInstance().username;
+                this.signedInAsToolStripMenuItem.Enabled = true;
+            }
+
             canvas = new Canvas(this);
         }
 
@@ -53,6 +72,10 @@ namespace EOS.app {
             }
 
             g.Dispose();
+        }
+
+        private void taskListMenuButton_Click(object sender, EventArgs e) {
+            Console.WriteLine("Showing task list now");
         }
     }
 }

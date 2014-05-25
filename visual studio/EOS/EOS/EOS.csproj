@@ -93,7 +93,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_4202.png" />
   </ItemGroup>
@@ -105,6 +107,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_28854.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_border1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_border2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

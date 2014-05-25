@@ -29,9 +29,14 @@
             this.newSubjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.signedInAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.switchAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCalendarMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.taskListMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,40 +64,85 @@
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("menuStrip1.BackgroundImage")));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3});
+            this.accountMenuButton,
+            this.showCalendarMenuButton,
+            this.taskListMenuButton});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menuStrip1.Size = new System.Drawing.Size(735, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // toolStripMenuItem1
+            // accountMenuButton
             // 
-            this.toolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripMenuItem1.BackgroundImage = global::EOS.Properties.Resources.icon_24643;
-            this.toolStripMenuItem1.Image = global::EOS.Properties.Resources.icon_24643;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(28, 20);
-            this.toolStripMenuItem1.ToolTipText = "Account Management";
+            this.accountMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.accountMenuButton.BackgroundImage = global::EOS.Properties.Resources.icon_24643;
+            this.accountMenuButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.signedInAsToolStripMenuItem,
+            this.logInToolStripMenuItem,
+            this.registerToolStripMenuItem,
+            this.switchAccountsToolStripMenuItem,
+            this.logOutToolStripMenuItem});
+            this.accountMenuButton.Image = global::EOS.Properties.Resources.icon_24643;
+            this.accountMenuButton.Name = "accountMenuButton";
+            this.accountMenuButton.Size = new System.Drawing.Size(80, 20);
+            this.accountMenuButton.Text = "Account";
+            this.accountMenuButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.accountMenuButton.ToolTipText = "Account Management";
             // 
-            // toolStripMenuItem2
+            // signedInAsToolStripMenuItem
             // 
-            this.toolStripMenuItem2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripMenuItem2.Image = global::EOS.Properties.Resources.icon_28854;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(28, 20);
-            this.toolStripMenuItem2.ToolTipText = "Show Calendar View";
+            this.signedInAsToolStripMenuItem.Name = "signedInAsToolStripMenuItem";
+            this.signedInAsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.signedInAsToolStripMenuItem.Text = "Signed in as ";
             // 
-            // toolStripMenuItem3
+            // logInToolStripMenuItem
             // 
-            this.toolStripMenuItem3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripMenuItem3.Image = global::EOS.Properties.Resources.icon_4202;
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(28, 20);
-            this.toolStripMenuItem3.ToolTipText = "Show Task List";
+            this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.logInToolStripMenuItem.Text = "Log in";
+            // 
+            // registerToolStripMenuItem
+            // 
+            this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
+            this.registerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.registerToolStripMenuItem.Text = "Register";
+            // 
+            // switchAccountsToolStripMenuItem
+            // 
+            this.switchAccountsToolStripMenuItem.Name = "switchAccountsToolStripMenuItem";
+            this.switchAccountsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.switchAccountsToolStripMenuItem.Text = "Switch Accounts";
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.logOutToolStripMenuItem.Text = "Log out";
+            // 
+            // showCalendarMenuButton
+            // 
+            this.showCalendarMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.showCalendarMenuButton.Image = global::EOS.Properties.Resources.icon_28854;
+            this.showCalendarMenuButton.Name = "showCalendarMenuButton";
+            this.showCalendarMenuButton.Size = new System.Drawing.Size(110, 20);
+            this.showCalendarMenuButton.Text = "Calendar View";
+            this.showCalendarMenuButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.showCalendarMenuButton.ToolTipText = "Show Calendar View";
+            // 
+            // taskListMenuButton
+            // 
+            this.taskListMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.taskListMenuButton.Image = global::EOS.Properties.Resources.icon_4202;
+            this.taskListMenuButton.Name = "taskListMenuButton";
+            this.taskListMenuButton.Size = new System.Drawing.Size(87, 20);
+            this.taskListMenuButton.Text = "Task View";
+            this.taskListMenuButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.taskListMenuButton.ToolTipText = "Show Task List";
+            this.taskListMenuButton.Click += new System.EventHandler(this.taskListMenuButton_Click);
             // 
             // MainForm
             // 
@@ -121,8 +171,13 @@
         private System.Windows.Forms.ToolStripMenuItem newSubjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newTaskToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem accountMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem showCalendarMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem taskListMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem signedInAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem switchAccountsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registerToolStripMenuItem;
     }
 }

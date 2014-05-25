@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +23,19 @@ namespace EOS.app.drawing {
         #endregion
 
         public void render(Graphics g) {
-            SolidBrush brush = new SolidBrush(Color.Red);
-            g.FillRectangle(brush, new Rectangle(0, 0, 200, 300));
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            SolidBrush brush = new SolidBrush(Color.FromArgb(120, 200, 200));
+            g.DrawEllipse(new Pen(brush), halfWidth() - 25, halfHeight() - 25, 50, 50);
             brush.Dispose();
+        }
+
+        private int halfWidth() {
+            return mainForm.Width / 2;
+        }
+
+        private int halfHeight() {
+            return mainForm.Height / 2;
         }
     }
 }
