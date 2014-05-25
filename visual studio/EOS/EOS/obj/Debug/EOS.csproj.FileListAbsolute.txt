@@ -7,3 +7,4 @@ E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.Properties.Resource
 E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.csproj.GenerateResource.Cache
 E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.exe
 E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.pdb
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.app.MainForm.resources
