@@ -1,5 +1,6 @@
 ﻿using EOS.app.drawing;
 using EOS.user;
+using EOS.utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace EOS.app {
         public MainForm() {
             InitializeComponent();
             this.Text = "EOS — " + CurrentUser.getInstance().username;
-            canvas = new Canvas();
+            canvas = new Canvas(this);
         }
 
         private void MainForm_Paint(object sender, PaintEventArgs e) {
@@ -33,16 +34,20 @@ namespace EOS.app {
         }
 
         private void render() {
+            long start;
+            long end;
             long renderTime;
             long sleepFor;
             Graphics g = CreateGraphics();
 
             while (this.Visible) {
-                renderTime = 0;
+                start = TimeHelper.Now();
                 canvas.render(g);
-                renderTime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+                end = TimeHelper.Now();
 
-                sleepFor = (long) Math.Max(((1 / 60f) * 1000) - renderTime, 0); // milliseconds per frame @ 60 FPS
+                renderTime = end - start;
+
+                sleepFor = (long) Math.Max(TimeHelper.MILLISECONDS_PER_FRAME - renderTime, 0); // milliseconds per frame @ 60 FPS
 
                 Thread.Sleep((int) sleepFor);
             }

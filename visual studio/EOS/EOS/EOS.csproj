@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="user\CurrentUser.cs" />
     <Compile Include="utility\SecurityHelper.cs" />
+    <Compile Include="utility\TimeHelper.cs" />
     <EmbeddedResource Include="app\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
