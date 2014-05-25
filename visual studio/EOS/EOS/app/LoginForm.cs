@@ -89,7 +89,7 @@ namespace EOS {
             errorProvider1.SetError(passwordTextBox, "");
         }
 
-        #endregion 
+        #endregion
 
         #region Create a new account
 

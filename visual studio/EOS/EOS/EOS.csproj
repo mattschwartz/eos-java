@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="app\drawing\Canvas.cs" />
     <Compile Include="app\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,9 +92,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="app\drawing\" />
-    <Folder Include="Resources\" />
+    <None Include="Resources\icon_4202.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_8311.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_24643.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_28854.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

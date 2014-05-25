@@ -52,6 +52,10 @@ namespace EOS.user {
         public void setUser(string username, bool online) {
             _username = username;
             _online = online;
+
+            if (!online) {
+                _username = "Not logged in";
+            }
         }
     }
 }
