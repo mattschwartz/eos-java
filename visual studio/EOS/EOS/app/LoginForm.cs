@@ -14,12 +14,6 @@ using EOS.app;
 namespace EOS {
     public partial class loginForm : Form {
 
-        #region Data
-
-
-
-        #endregion
-
         #region Constructor
 
         public loginForm() {

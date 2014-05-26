@@ -1,4 +1,5 @@
 ﻿using EOS.user;
+using EOS.utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,7 +50,8 @@ namespace EOS.app {
                 return true;
             }
 
-            if (!validateEmail()) {
+            if (!StringHelper.isEmail(emailTextBox.Text)) {
+                errorProvider1.SetError(emailTextBox, "Please enter a valid email address.");
                 return true;
             }
 
@@ -103,18 +105,6 @@ namespace EOS.app {
         #endregion
 
         #region Validate user input
-
-        private bool validateEmail() {
-            Regex regex = new Regex(@"^[a-zA-Z][\w\.-]{2,28}[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$");
-
-
-            if (!regex.IsMatch(emailTextBox.Text)) {
-                errorProvider1.SetError(emailTextBox, "Please enter a valid email address.");
-                return false;
-            }
-
-            return true;
-        }
 
         private bool validateUsername() {
             // make a call to ensure the username is not in use already

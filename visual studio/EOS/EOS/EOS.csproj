@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="user\CurrentUser.cs" />
     <Compile Include="utility\SecurityHelper.cs" />
+    <Compile Include="utility\StringHelper.cs" />
     <Compile Include="utility\TimeHelper.cs" />
     <EmbeddedResource Include="app\AccountCreationForm.resx">
       <DependentUpon>AccountCreationForm.cs</DependentUpon>
@@ -125,6 +126,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\menu_border2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_34727.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_border_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_border_top1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_border_top2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

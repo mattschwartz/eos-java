@@ -17,7 +17,6 @@ namespace EOS.app {
 
         #region Data
 
-        private Thread renderThread;
         private Canvas canvas;
 
         #endregion
@@ -26,7 +25,6 @@ namespace EOS.app {
 
         public MainForm() {
             InitializeComponent();
-            this.Text = "EOS — " + CurrentUser.getInstance().username;
             setMenuItems(CurrentUser.getInstance().online);
             canvas = new Canvas(this);
         }
@@ -36,6 +34,8 @@ namespace EOS.app {
         #region Set visibility of menu items
 
         private void setMenuItems(bool online) {
+            this.Text = "EOS — " + CurrentUser.getInstance().username;
+
             if (!online) {
                 this.switchAccountsToolStripMenuItem.Visible = false;
                 this.logOutToolStripMenuItem.Visible = false;
@@ -101,5 +101,23 @@ namespace EOS.app {
 
             g.Dispose();
         }
+
+        #region Toolstrip buttons clicked
+
+        private void logInToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.Dispose();
+        }
+
+        private void registerToolStripMenuItem_Click(object sender, EventArgs e) {
+            new AccountCreationForm().ShowDialog();
+            setMenuItems(CurrentUser.getInstance().online);
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.Dispose();
+        }
+
+        #endregion
+
     }
 }
