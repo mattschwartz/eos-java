@@ -12,12 +12,19 @@ using System.Windows.Forms;
 using EOS.app;
 
 namespace EOS {
-    public partial class loginForm : Form {
+    public partial class LoginForm : Form {
+
+        #region Data
+
+        private ApplicationContext context;
+
+        #endregion
 
         #region Constructor
 
-        public loginForm() {
+        public LoginForm(ApplicationContext context) {
             InitializeComponent();
+            this.context = context;
         }
 
         #endregion
@@ -90,7 +97,7 @@ namespace EOS {
 
         private void newAccountButton_Click(object sender, EventArgs e) {
             this.Hide();
-            DialogResult dr = (new AccountCreationForm()).ShowDialog();
+            DialogResult dr = ((Program)context).accountCreationForm.ShowDialog();
 
             if (dr == DialogResult.OK) {
                 launch();
@@ -112,17 +119,13 @@ namespace EOS {
 
         private void launch() {
             this.Hide();
-            new MainForm().ShowDialog();
-
-            errorProvider1.SetError(usernameTextBox, "");
-            errorProvider1.SetError(passwordTextBox, "");
-            this.Show();
+            ((Program) context).mainForm.Show();
         }
 
         #region Exit
 
         private void exitButton_Click(object sender, EventArgs e) {
-            Application.Exit();
+            context.ExitThread();
         }
 
         #endregion

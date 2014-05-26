@@ -25,7 +25,7 @@ namespace EOS.app {
         #region Button clicks
 
         private void cancelButton_Click(object sender, EventArgs e) {
-            this.Dispose();
+            this.Hide();
         }
 
         private void registerButton_Click(object sender, EventArgs e) {

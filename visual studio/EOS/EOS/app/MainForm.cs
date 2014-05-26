@@ -1,4 +1,5 @@
 ﻿using EOS.app.drawing;
+using EOS.Properties;
 using EOS.user;
 using EOS.utility;
 using System;
@@ -18,16 +19,25 @@ namespace EOS.app {
         #region Data
 
         private Canvas canvas;
+        private ApplicationContext context;
 
         #endregion
 
         #region Constructor
 
-        public MainForm() {
+        public MainForm(ApplicationContext context) {
             InitializeComponent();
-            setMenuItems(CurrentUser.getInstance().online);
             canvas = new Canvas(this);
+            this.context = context;
+            this.Shown += MainForm_Shown;
         }
+
+        #region When form is shown
+
+        private void MainForm_Shown(object sender, EventArgs e) {
+        }
+
+        #endregion
 
         #endregion
 
@@ -57,14 +67,6 @@ namespace EOS.app {
 
         #endregion
 
-        #region Menu buttons clicked
-
-        private void taskListMenuButton_Click(object sender, EventArgs e) {
-            Console.WriteLine("Showing task list now");
-        }
-
-        #endregion
-
         #region Rendering method
 
         private void MainForm_Paint(object sender, PaintEventArgs e) {
@@ -75,49 +77,80 @@ namespace EOS.app {
 
         #endregion
 
-        // ♬♪ look at this code ♬♪
-        // ♬♪ this code is amazing ♬♪
-        // ♬♪ give it a call ♬♪
-        // cuz it don't do shit right now...
-        // @deprecated
-        private void render() {
-            long start;
-            long end;
-            long renderTime;
-            long sleepFor;
-            Graphics g = CreateGraphics();
-
-            while (this.Visible) {
-                start = TimeHelper.Now();
-                canvas.render(g);
-                end = TimeHelper.Now();
-
-                renderTime = end - start;
-
-                sleepFor = (long) Math.Max(TimeHelper.MILLISECONDS_PER_FRAME - renderTime, 0); // milliseconds per frame @ 60 FPS
-
-                Thread.Sleep((int) sleepFor);
-            }
-
-            g.Dispose();
-        }
-
         #region Toolstrip buttons clicked
 
-        private void logInToolStripMenuItem_Click(object sender, EventArgs e) {
-            this.Dispose();
-        }
+        #region Task List button
 
-        private void registerToolStripMenuItem_Click(object sender, EventArgs e) {
-            new AccountCreationForm().ShowDialog();
-            setMenuItems(CurrentUser.getInstance().online);
-        }
-
-        private void logOutToolStripMenuItem_Click(object sender, EventArgs e) {
-            this.Dispose();
+        private void taskListMenuButton_Click(object sender, EventArgs e) {
         }
 
         #endregion
+
+        #region Log-in button
+
+        private void logInToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.Hide();
+            ((Program) context).loginForm.ShowDialog();
+            this.Show();
+        }
+
+        #endregion
+
+        #region Register button
+
+        private void registerToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.Hide();
+            ((Program) context).accountCreationForm.ShowDialog();
+            this.Show();
+        }
+
+        #endregion
+
+        #region Log out button
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e) {
+            DialogResult dr = DialogResult.Yes;
+
+            if (Settings.Default.perform_logout_check) {
+                dr = MessageBox.Show("Sync changes and log out?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+            if (dr == DialogResult.Yes) {
+                this.Hide();
+                dr = ((Program) context).loginForm.ShowDialog();
+
+                if (dr == DialogResult.Abort) {
+                    Application.Exit();
+                }
+
+                this.Show();
+            } 
+        }
+
+        #endregion
+
+        #region Settings button
+
+        private void settingsMenuItem_Click(object sender, EventArgs e) {
+            DialogResult dr = new SettingsForm().ShowDialog();
+
+            if (dr == DialogResult.OK) {
+
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
+            context.ExitThread();
+        }
+
+        private void MainForm_VisibleChanged(object sender, EventArgs e) {
+            if (Visible) {
+                setMenuItems(CurrentUser.getInstance().online);
+            }
+        }
 
     }
 }
