@@ -52,20 +52,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(204, 128);
+            this.label2.Location = new System.Drawing.Point(172, 128);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Username";
+            this.label2.Text = "Username or Email:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(204, 154);
+            this.label3.Location = new System.Drawing.Point(214, 154);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Password";
+            this.label3.Text = "Password:";
             // 
             // usernameTextBox
             // 
@@ -111,7 +111,7 @@
             // rememberUserCheckBox
             // 
             this.rememberUserCheckBox.AutoSize = true;
-            this.rememberUserCheckBox.Location = new System.Drawing.Point(163, 181);
+            this.rememberUserCheckBox.Location = new System.Drawing.Point(176, 181);
             this.rememberUserCheckBox.Name = "rememberUserCheckBox";
             this.rememberUserCheckBox.Size = new System.Drawing.Size(94, 17);
             this.rememberUserCheckBox.TabIndex = 2;

@@ -49,6 +49,7 @@ namespace EOS {
 
             if (!success) {
                 MessageBox.Show("Incorrect username or password. Please try again.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             CurrentUser.getInstance().setUser(usernameTextBox.Text, true);
@@ -94,7 +95,14 @@ namespace EOS {
         #region Create a new account
 
         private void newAccountButton_Click(object sender, EventArgs e) {
+            this.Hide();
+            DialogResult dr = (new AccountCreationForm()).ShowDialog();
 
+            if (dr == DialogResult.OK) {
+                launch();
+            } else {
+                this.Show();
+            }
         }
 
         #endregion
@@ -111,6 +119,9 @@ namespace EOS {
         private void launch() {
             this.Hide();
             new MainForm().ShowDialog();
+
+            errorProvider1.SetError(usernameTextBox, "");
+            errorProvider1.SetError(passwordTextBox, "");
             this.Show();
         }
 

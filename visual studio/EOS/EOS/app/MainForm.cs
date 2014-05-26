@@ -22,11 +22,21 @@ namespace EOS.app {
 
         #endregion
 
+        #region Constructor
+
         public MainForm() {
             InitializeComponent();
             this.Text = "EOS — " + CurrentUser.getInstance().username;
+            setMenuItems(CurrentUser.getInstance().online);
+            canvas = new Canvas(this);
+        }
 
-            if (!CurrentUser.getInstance().online) {
+        #endregion
+
+        #region Set visibility of menu items
+
+        private void setMenuItems(bool online) {
+            if (!online) {
                 this.switchAccountsToolStripMenuItem.Visible = false;
                 this.logOutToolStripMenuItem.Visible = false;
 
@@ -43,15 +53,33 @@ namespace EOS.app {
                 this.signedInAsToolStripMenuItem.Text = "Signed in as " + CurrentUser.getInstance().username;
                 this.signedInAsToolStripMenuItem.Enabled = true;
             }
-
-            canvas = new Canvas(this);
         }
+
+        #endregion
+
+        #region Menu buttons clicked
+
+        private void taskListMenuButton_Click(object sender, EventArgs e) {
+            Console.WriteLine("Showing task list now");
+        }
+
+        #endregion
+
+        #region Rendering method
 
         private void MainForm_Paint(object sender, PaintEventArgs e) {
-            renderThread = new Thread(new ThreadStart(render));
-            renderThread.Start();
+            Graphics g = CreateGraphics();
+            g.Clear(BackColor);
+            canvas.render(g);
         }
 
+        #endregion
+
+        // ♬♪ look at this code ♬♪
+        // ♬♪ this code is amazing ♬♪
+        // ♬♪ give it a call ♬♪
+        // cuz it don't do shit right now...
+        // @deprecated
         private void render() {
             long start;
             long end;
@@ -72,10 +100,6 @@ namespace EOS.app {
             }
 
             g.Dispose();
-        }
-
-        private void taskListMenuButton_Click(object sender, EventArgs e) {
-            Console.WriteLine("Showing task list now");
         }
     }
 }

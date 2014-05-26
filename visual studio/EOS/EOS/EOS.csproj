@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="app\AccountCreationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app\AccountCreationForm.Designer.cs">
+      <DependentUpon>AccountCreationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="app\drawing\Canvas.cs" />
     <Compile Include="app\LoginForm.cs">
       <SubType>Form</SubType>
@@ -69,6 +75,9 @@
     <Compile Include="user\CurrentUser.cs" />
     <Compile Include="utility\SecurityHelper.cs" />
     <Compile Include="utility\TimeHelper.cs" />
+    <EmbeddedResource Include="app\AccountCreationForm.resx">
+      <DependentUpon>AccountCreationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="app\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
