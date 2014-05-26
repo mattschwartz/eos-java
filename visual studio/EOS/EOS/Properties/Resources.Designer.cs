@@ -73,16 +73,6 @@ namespace EOS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_24643 {
-            get {
-                object obj = ResourceManager.GetObject("icon_24643", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icon_28854 {
             get {
                 object obj = ResourceManager.GetObject("icon_28854", resourceCulture);
@@ -96,6 +86,16 @@ namespace EOS.Properties {
         internal static System.Drawing.Bitmap icon_34727 {
             get {
                 object obj = ResourceManager.GetObject("icon_34727", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_39891 {
+            get {
+                object obj = ResourceManager.GetObject("icon_39891", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

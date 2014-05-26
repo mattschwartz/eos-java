@@ -118,14 +118,13 @@
             // accountMenuButton
             // 
             this.accountMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.accountMenuButton.BackgroundImage = global::EOS.Properties.Resources.icon_24643;
             this.accountMenuButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.signedInAsToolStripMenuItem,
             this.logInToolStripMenuItem,
             this.registerToolStripMenuItem,
             this.switchAccountsToolStripMenuItem,
             this.logOutToolStripMenuItem});
-            this.accountMenuButton.Image = global::EOS.Properties.Resources.icon_24643;
+            this.accountMenuButton.Image = global::EOS.Properties.Resources.icon_39891;
             this.accountMenuButton.Name = "accountMenuButton";
             this.accountMenuButton.Size = new System.Drawing.Size(80, 20);
             this.accountMenuButton.Text = "Account";

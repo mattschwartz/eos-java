@@ -29,15 +29,21 @@ namespace EOS.app {
             InitializeComponent();
             canvas = new Canvas(this);
             this.context = context;
-            this.Shown += MainForm_Shown;
-        }
-
-        #region When form is shown
-
-        private void MainForm_Shown(object sender, EventArgs e) {
         }
 
         #endregion
+
+        #region Form events
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
+            context.ExitThread();
+        }
+
+        private void MainForm_VisibleChanged(object sender, EventArgs e) {
+            if (Visible) {
+                setMenuItems(CurrentUser.getInstance().online);
+            }
+        }
 
         #endregion
 
@@ -141,16 +147,6 @@ namespace EOS.app {
         #endregion
 
         #endregion
-
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
-            context.ExitThread();
-        }
-
-        private void MainForm_VisibleChanged(object sender, EventArgs e) {
-            if (Visible) {
-                setMenuItems(CurrentUser.getInstance().online);
-            }
-        }
 
     }
 }
