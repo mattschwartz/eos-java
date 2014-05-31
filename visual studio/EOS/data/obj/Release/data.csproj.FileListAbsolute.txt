@@ -1,0 +1,6 @@
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\bin\Release\data.exe.config
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\bin\Release\data.exe
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\bin\Release\data.pdb
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\obj\Release\data.exe
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\obj\Release\data.pdb
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\obj\Release\data.csprojResolveAssemblyReference.cache
