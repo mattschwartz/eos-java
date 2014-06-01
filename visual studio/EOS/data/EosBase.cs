@@ -27,7 +27,17 @@ namespace Eos.Enteprise {
     [System.Web.Services.WebServiceBindingAttribute(Name="UserServicePortBinding", Namespace="http://eos.com/")]
     public partial class UserService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback testOperationCompleted;
+        
         private System.Threading.SendOrPostCallback authenticateUserOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback authenticateByEmailOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getUserIdByUsernameOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback recoverUserAccountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deleteFriendsOperationCompleted;
         
         private System.Threading.SendOrPostCallback searchForUsersOperationCompleted;
         
@@ -35,33 +45,38 @@ namespace Eos.Enteprise {
         
         private System.Threading.SendOrPostCallback saveUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback addFriendsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback getUsersOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback getUserIdByUsernameOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback deleteUserOperationCompleted;
         
         private System.Threading.SendOrPostCallback addNewUserOperationCompleted;
         
-        private System.Threading.SendOrPostCallback recoverUserAccountOperationCompleted;
+        private System.Threading.SendOrPostCallback deleteUserOperationCompleted;
         
         private System.Threading.SendOrPostCallback getUserSaltOperationCompleted;
         
-        private System.Threading.SendOrPostCallback addFriendsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback deleteFriendsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback authenticateByEmailOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback testOperationCompleted;
-        
         /// <remarks/>
         public UserService() {
-            this.Url = "http://66.90.217.15:8080/eos-services/UserService";
+            this.Url = "http://localhost:8080/eos-services/UserService";
         }
         
         /// <remarks/>
+        public event testCompletedEventHandler testCompleted;
+        
+        /// <remarks/>
         public event authenticateUserCompletedEventHandler authenticateUserCompleted;
+        
+        /// <remarks/>
+        public event authenticateByEmailCompletedEventHandler authenticateByEmailCompleted;
+        
+        /// <remarks/>
+        public event getUserIdByUsernameCompletedEventHandler getUserIdByUsernameCompleted;
+        
+        /// <remarks/>
+        public event recoverUserAccountCompletedEventHandler recoverUserAccountCompleted;
+        
+        /// <remarks/>
+        public event deleteFriendsCompletedEventHandler deleteFriendsCompleted;
         
         /// <remarks/>
         public event searchForUsersCompletedEventHandler searchForUsersCompleted;
@@ -73,34 +88,61 @@ namespace Eos.Enteprise {
         public event saveUserCompletedEventHandler saveUserCompleted;
         
         /// <remarks/>
+        public event addFriendsCompletedEventHandler addFriendsCompleted;
+        
+        /// <remarks/>
         public event getUsersCompletedEventHandler getUsersCompleted;
-        
-        /// <remarks/>
-        public event getUserIdByUsernameCompletedEventHandler getUserIdByUsernameCompleted;
-        
-        /// <remarks/>
-        public event deleteUserCompletedEventHandler deleteUserCompleted;
         
         /// <remarks/>
         public event addNewUserCompletedEventHandler addNewUserCompleted;
         
         /// <remarks/>
-        public event recoverUserAccountCompletedEventHandler recoverUserAccountCompleted;
+        public event deleteUserCompletedEventHandler deleteUserCompleted;
         
         /// <remarks/>
         public event getUserSaltCompletedEventHandler getUserSaltCompleted;
         
         /// <remarks/>
-        public event addFriendsCompletedEventHandler addFriendsCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("test", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string test([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string data) {
+            object[] results = this.Invoke("test", new object[] {
+                        data});
+            return ((string)(results[0]));
+        }
         
         /// <remarks/>
-        public event deleteFriendsCompletedEventHandler deleteFriendsCompleted;
+        public System.IAsyncResult Begintest(string data, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("test", new object[] {
+                        data}, callback, asyncState);
+        }
         
         /// <remarks/>
-        public event authenticateByEmailCompletedEventHandler authenticateByEmailCompleted;
+        public string Endtest(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((string)(results[0]));
+        }
         
         /// <remarks/>
-        public event testCompletedEventHandler testCompleted;
+        public void testAsync(string data) {
+            this.testAsync(data, null);
+        }
+        
+        /// <remarks/>
+        public void testAsync(string data, object userState) {
+            if ((this.testOperationCompleted == null)) {
+                this.testOperationCompleted = new System.Threading.SendOrPostCallback(this.OntestOperationCompleted);
+            }
+            this.InvokeAsync("test", new object[] {
+                        data}, this.testOperationCompleted, userState);
+        }
+        
+        private void OntestOperationCompleted(object arg) {
+            if ((this.testCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.testCompleted(this, new testCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("authenticateUser", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -144,6 +186,174 @@ namespace Eos.Enteprise {
             if ((this.authenticateUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.authenticateUserCompleted(this, new authenticateUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("authenticateByEmail", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public UserTO authenticateByEmail([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string email, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string password) {
+            object[] results = this.Invoke("authenticateByEmail", new object[] {
+                        email,
+                        password});
+            return ((UserTO)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginauthenticateByEmail(string email, string password, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("authenticateByEmail", new object[] {
+                        email,
+                        password}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public UserTO EndauthenticateByEmail(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((UserTO)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void authenticateByEmailAsync(string email, string password) {
+            this.authenticateByEmailAsync(email, password, null);
+        }
+        
+        /// <remarks/>
+        public void authenticateByEmailAsync(string email, string password, object userState) {
+            if ((this.authenticateByEmailOperationCompleted == null)) {
+                this.authenticateByEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnauthenticateByEmailOperationCompleted);
+            }
+            this.InvokeAsync("authenticateByEmail", new object[] {
+                        email,
+                        password}, this.authenticateByEmailOperationCompleted, userState);
+        }
+        
+        private void OnauthenticateByEmailOperationCompleted(object arg) {
+            if ((this.authenticateByEmailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.authenticateByEmailCompleted(this, new authenticateByEmailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("getUserIdByUsername", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int getUserIdByUsername([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string username) {
+            object[] results = this.Invoke("getUserIdByUsername", new object[] {
+                        username});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BegingetUserIdByUsername(string username, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("getUserIdByUsername", new object[] {
+                        username}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public int EndgetUserIdByUsername(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getUserIdByUsernameAsync(string username) {
+            this.getUserIdByUsernameAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void getUserIdByUsernameAsync(string username, object userState) {
+            if ((this.getUserIdByUsernameOperationCompleted == null)) {
+                this.getUserIdByUsernameOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetUserIdByUsernameOperationCompleted);
+            }
+            this.InvokeAsync("getUserIdByUsername", new object[] {
+                        username}, this.getUserIdByUsernameOperationCompleted, userState);
+        }
+        
+        private void OngetUserIdByUsernameOperationCompleted(object arg) {
+            if ((this.getUserIdByUsernameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getUserIdByUsernameCompleted(this, new getUserIdByUsernameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("recoverUserAccount", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void recoverUserAccount([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user) {
+            this.Invoke("recoverUserAccount", new object[] {
+                        user});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginrecoverUserAccount(UserTO user, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("recoverUserAccount", new object[] {
+                        user}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndrecoverUserAccount(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
+        public void recoverUserAccountAsync(UserTO user) {
+            this.recoverUserAccountAsync(user, null);
+        }
+        
+        /// <remarks/>
+        public void recoverUserAccountAsync(UserTO user, object userState) {
+            if ((this.recoverUserAccountOperationCompleted == null)) {
+                this.recoverUserAccountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnrecoverUserAccountOperationCompleted);
+            }
+            this.InvokeAsync("recoverUserAccount", new object[] {
+                        user}, this.recoverUserAccountOperationCompleted, userState);
+        }
+        
+        private void OnrecoverUserAccountOperationCompleted(object arg) {
+            if ((this.recoverUserAccountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.recoverUserAccountCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("deleteFriends", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void deleteFriends([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user1, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user2) {
+            this.Invoke("deleteFriends", new object[] {
+                        user1,
+                        user2});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BegindeleteFriends(UserTO user1, UserTO user2, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("deleteFriends", new object[] {
+                        user1,
+                        user2}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EnddeleteFriends(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
+        public void deleteFriendsAsync(UserTO user1, UserTO user2) {
+            this.deleteFriendsAsync(user1, user2, null);
+        }
+        
+        /// <remarks/>
+        public void deleteFriendsAsync(UserTO user1, UserTO user2, object userState) {
+            if ((this.deleteFriendsOperationCompleted == null)) {
+                this.deleteFriendsOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteFriendsOperationCompleted);
+            }
+            this.InvokeAsync("deleteFriends", new object[] {
+                        user1,
+                        user2}, this.deleteFriendsOperationCompleted, userState);
+        }
+        
+        private void OndeleteFriendsOperationCompleted(object arg) {
+            if ((this.deleteFriendsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deleteFriendsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -277,6 +487,48 @@ namespace Eos.Enteprise {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("addFriends", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void addFriends([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user1, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user2) {
+            this.Invoke("addFriends", new object[] {
+                        user1,
+                        user2});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginaddFriends(UserTO user1, UserTO user2, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("addFriends", new object[] {
+                        user1,
+                        user2}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndaddFriends(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
+        public void addFriendsAsync(UserTO user1, UserTO user2) {
+            this.addFriendsAsync(user1, user2, null);
+        }
+        
+        /// <remarks/>
+        public void addFriendsAsync(UserTO user1, UserTO user2, object userState) {
+            if ((this.addFriendsOperationCompleted == null)) {
+                this.addFriendsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddFriendsOperationCompleted);
+            }
+            this.InvokeAsync("addFriends", new object[] {
+                        user1,
+                        user2}, this.addFriendsOperationCompleted, userState);
+        }
+        
+        private void OnaddFriendsOperationCompleted(object arg) {
+            if ((this.addFriendsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addFriendsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("getUsers", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public UserTO[] getUsers([System.Xml.Serialization.XmlElementAttribute("ids", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int[] ids) {
@@ -315,87 +567,6 @@ namespace Eos.Enteprise {
             if ((this.getUsersCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getUsersCompleted(this, new getUsersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("getUserIdByUsername", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int getUserIdByUsername([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string username) {
-            object[] results = this.Invoke("getUserIdByUsername", new object[] {
-                        username});
-            return ((int)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BegingetUserIdByUsername(string username, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("getUserIdByUsername", new object[] {
-                        username}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public int EndgetUserIdByUsername(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((int)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getUserIdByUsernameAsync(string username) {
-            this.getUserIdByUsernameAsync(username, null);
-        }
-        
-        /// <remarks/>
-        public void getUserIdByUsernameAsync(string username, object userState) {
-            if ((this.getUserIdByUsernameOperationCompleted == null)) {
-                this.getUserIdByUsernameOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetUserIdByUsernameOperationCompleted);
-            }
-            this.InvokeAsync("getUserIdByUsername", new object[] {
-                        username}, this.getUserIdByUsernameOperationCompleted, userState);
-        }
-        
-        private void OngetUserIdByUsernameOperationCompleted(object arg) {
-            if ((this.getUserIdByUsernameCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getUserIdByUsernameCompleted(this, new getUserIdByUsernameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("deleteUser", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void deleteUser([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int arg0) {
-            this.Invoke("deleteUser", new object[] {
-                        arg0});
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BegindeleteUser(int arg0, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("deleteUser", new object[] {
-                        arg0}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public void EnddeleteUser(System.IAsyncResult asyncResult) {
-            this.EndInvoke(asyncResult);
-        }
-        
-        /// <remarks/>
-        public void deleteUserAsync(int arg0) {
-            this.deleteUserAsync(arg0, null);
-        }
-        
-        /// <remarks/>
-        public void deleteUserAsync(int arg0, object userState) {
-            if ((this.deleteUserOperationCompleted == null)) {
-                this.deleteUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteUserOperationCompleted);
-            }
-            this.InvokeAsync("deleteUser", new object[] {
-                        arg0}, this.deleteUserOperationCompleted, userState);
-        }
-        
-        private void OndeleteUserOperationCompleted(object arg) {
-            if ((this.deleteUserCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.deleteUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -439,41 +610,41 @@ namespace Eos.Enteprise {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("recoverUserAccount", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void recoverUserAccount([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user) {
-            this.Invoke("recoverUserAccount", new object[] {
-                        user});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("deleteUser", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void deleteUser([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int arg0) {
+            this.Invoke("deleteUser", new object[] {
+                        arg0});
         }
         
         /// <remarks/>
-        public System.IAsyncResult BeginrecoverUserAccount(UserTO user, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("recoverUserAccount", new object[] {
-                        user}, callback, asyncState);
+        public System.IAsyncResult BegindeleteUser(int arg0, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("deleteUser", new object[] {
+                        arg0}, callback, asyncState);
         }
         
         /// <remarks/>
-        public void EndrecoverUserAccount(System.IAsyncResult asyncResult) {
+        public void EnddeleteUser(System.IAsyncResult asyncResult) {
             this.EndInvoke(asyncResult);
         }
         
         /// <remarks/>
-        public void recoverUserAccountAsync(UserTO user) {
-            this.recoverUserAccountAsync(user, null);
+        public void deleteUserAsync(int arg0) {
+            this.deleteUserAsync(arg0, null);
         }
         
         /// <remarks/>
-        public void recoverUserAccountAsync(UserTO user, object userState) {
-            if ((this.recoverUserAccountOperationCompleted == null)) {
-                this.recoverUserAccountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnrecoverUserAccountOperationCompleted);
+        public void deleteUserAsync(int arg0, object userState) {
+            if ((this.deleteUserOperationCompleted == null)) {
+                this.deleteUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteUserOperationCompleted);
             }
-            this.InvokeAsync("recoverUserAccount", new object[] {
-                        user}, this.recoverUserAccountOperationCompleted, userState);
+            this.InvokeAsync("deleteUser", new object[] {
+                        arg0}, this.deleteUserOperationCompleted, userState);
         }
         
-        private void OnrecoverUserAccountOperationCompleted(object arg) {
-            if ((this.recoverUserAccountCompleted != null)) {
+        private void OndeleteUserOperationCompleted(object arg) {
+            if ((this.deleteUserCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.recoverUserAccountCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.deleteUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -516,177 +687,6 @@ namespace Eos.Enteprise {
             if ((this.getUserSaltCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getUserSaltCompleted(this, new getUserSaltCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("addFriends", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void addFriends([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user1, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user2) {
-            this.Invoke("addFriends", new object[] {
-                        user1,
-                        user2});
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginaddFriends(UserTO user1, UserTO user2, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("addFriends", new object[] {
-                        user1,
-                        user2}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public void EndaddFriends(System.IAsyncResult asyncResult) {
-            this.EndInvoke(asyncResult);
-        }
-        
-        /// <remarks/>
-        public void addFriendsAsync(UserTO user1, UserTO user2) {
-            this.addFriendsAsync(user1, user2, null);
-        }
-        
-        /// <remarks/>
-        public void addFriendsAsync(UserTO user1, UserTO user2, object userState) {
-            if ((this.addFriendsOperationCompleted == null)) {
-                this.addFriendsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddFriendsOperationCompleted);
-            }
-            this.InvokeAsync("addFriends", new object[] {
-                        user1,
-                        user2}, this.addFriendsOperationCompleted, userState);
-        }
-        
-        private void OnaddFriendsOperationCompleted(object arg) {
-            if ((this.addFriendsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.addFriendsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("deleteFriends", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void deleteFriends([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user1, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] UserTO user2) {
-            this.Invoke("deleteFriends", new object[] {
-                        user1,
-                        user2});
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BegindeleteFriends(UserTO user1, UserTO user2, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("deleteFriends", new object[] {
-                        user1,
-                        user2}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public void EnddeleteFriends(System.IAsyncResult asyncResult) {
-            this.EndInvoke(asyncResult);
-        }
-        
-        /// <remarks/>
-        public void deleteFriendsAsync(UserTO user1, UserTO user2) {
-            this.deleteFriendsAsync(user1, user2, null);
-        }
-        
-        /// <remarks/>
-        public void deleteFriendsAsync(UserTO user1, UserTO user2, object userState) {
-            if ((this.deleteFriendsOperationCompleted == null)) {
-                this.deleteFriendsOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteFriendsOperationCompleted);
-            }
-            this.InvokeAsync("deleteFriends", new object[] {
-                        user1,
-                        user2}, this.deleteFriendsOperationCompleted, userState);
-        }
-        
-        private void OndeleteFriendsOperationCompleted(object arg) {
-            if ((this.deleteFriendsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.deleteFriendsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("authenticateByEmail", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public UserTO authenticateByEmail([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string email, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string password) {
-            object[] results = this.Invoke("authenticateByEmail", new object[] {
-                        email,
-                        password});
-            return ((UserTO)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginauthenticateByEmail(string email, string password, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("authenticateByEmail", new object[] {
-                        email,
-                        password}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public UserTO EndauthenticateByEmail(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((UserTO)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void authenticateByEmailAsync(string email, string password) {
-            this.authenticateByEmailAsync(email, password, null);
-        }
-        
-        /// <remarks/>
-        public void authenticateByEmailAsync(string email, string password, object userState) {
-            if ((this.authenticateByEmailOperationCompleted == null)) {
-                this.authenticateByEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnauthenticateByEmailOperationCompleted);
-            }
-            this.InvokeAsync("authenticateByEmail", new object[] {
-                        email,
-                        password}, this.authenticateByEmailOperationCompleted, userState);
-        }
-        
-        private void OnauthenticateByEmailOperationCompleted(object arg) {
-            if ((this.authenticateByEmailCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.authenticateByEmailCompleted(this, new authenticateByEmailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("test", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string test([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string data) {
-            object[] results = this.Invoke("test", new object[] {
-                        data});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult Begintest(string data, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("test", new object[] {
-                        data}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public string Endtest(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void testAsync(string data) {
-            this.testAsync(data, null);
-        }
-        
-        /// <remarks/>
-        public void testAsync(string data, object userState) {
-            if ((this.testOperationCompleted == null)) {
-                this.testOperationCompleted = new System.Threading.SendOrPostCallback(this.OntestOperationCompleted);
-            }
-            this.InvokeAsync("test", new object[] {
-                        data}, this.testOperationCompleted, userState);
-        }
-        
-        private void OntestOperationCompleted(object arg) {
-            if ((this.testCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.testCompleted(this, new testCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -811,6 +811,32 @@ namespace Eos.Enteprise {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    public delegate void testCompletedEventHandler(object sender, testCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class testCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal testCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
     public delegate void authenticateUserCompletedEventHandler(object sender, authenticateUserCompletedEventArgs e);
     
     /// <remarks/>
@@ -834,6 +860,66 @@ namespace Eos.Enteprise {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    public delegate void authenticateByEmailCompletedEventHandler(object sender, authenticateByEmailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class authenticateByEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal authenticateByEmailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public UserTO Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((UserTO)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    public delegate void getUserIdByUsernameCompletedEventHandler(object sender, getUserIdByUsernameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getUserIdByUsernameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getUserIdByUsernameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    public delegate void recoverUserAccountCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    public delegate void deleteFriendsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
@@ -915,6 +1001,10 @@ namespace Eos.Enteprise {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    public delegate void addFriendsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
     public delegate void getUsersCompletedEventHandler(object sender, getUsersCompletedEventArgs e);
     
     /// <remarks/>
@@ -941,41 +1031,11 @@ namespace Eos.Enteprise {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    public delegate void getUserIdByUsernameCompletedEventHandler(object sender, getUserIdByUsernameCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getUserIdByUsernameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getUserIdByUsernameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public int Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    public delegate void deleteUserCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
     public delegate void addNewUserCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    public delegate void recoverUserAccountCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void deleteUserCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
@@ -1005,70 +1065,12 @@ namespace Eos.Enteprise {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    public delegate void addFriendsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    public delegate void deleteFriendsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    public delegate void authenticateByEmailCompletedEventHandler(object sender, authenticateByEmailCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class authenticateByEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal authenticateByEmailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public UserTO Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((UserTO)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    public delegate void testCompletedEventHandler(object sender, testCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class testCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal testCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="SubjectServicePortBinding", Namespace="http://eos.com/")]
     public partial class SubjectService : System.Web.Services.Protocols.SoapHttpClientProtocol {
+        
+        private System.Threading.SendOrPostCallback getSubjectOperationCompleted;
         
         private System.Threading.SendOrPostCallback deleteSubjectOperationCompleted;
         
@@ -1078,12 +1080,13 @@ namespace Eos.Enteprise {
         
         private System.Threading.SendOrPostCallback saveSubjectOperationCompleted;
         
-        private System.Threading.SendOrPostCallback getSubjectOperationCompleted;
-        
         /// <remarks/>
         public SubjectService() {
-            this.Url = "http://66.90.217.15:8080/eos-services/SubjectService";
+            this.Url = "http://localhost:8080/eos-services/SubjectService";
         }
+        
+        /// <remarks/>
+        public event getSubjectCompletedEventHandler getSubjectCompleted;
         
         /// <remarks/>
         public event deleteSubjectCompletedEventHandler deleteSubjectCompleted;
@@ -1098,7 +1101,46 @@ namespace Eos.Enteprise {
         public event saveSubjectCompletedEventHandler saveSubjectCompleted;
         
         /// <remarks/>
-        public event getSubjectCompletedEventHandler getSubjectCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("getSubject", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SubjectTO getSubject([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int subjectId) {
+            object[] results = this.Invoke("getSubject", new object[] {
+                        subjectId});
+            return ((SubjectTO)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BegingetSubject(int subjectId, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("getSubject", new object[] {
+                        subjectId}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public SubjectTO EndgetSubject(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((SubjectTO)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getSubjectAsync(int subjectId) {
+            this.getSubjectAsync(subjectId, null);
+        }
+        
+        /// <remarks/>
+        public void getSubjectAsync(int subjectId, object userState) {
+            if ((this.getSubjectOperationCompleted == null)) {
+                this.getSubjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetSubjectOperationCompleted);
+            }
+            this.InvokeAsync("getSubject", new object[] {
+                        subjectId}, this.getSubjectOperationCompleted, userState);
+        }
+        
+        private void OngetSubjectOperationCompleted(object arg) {
+            if ((this.getSubjectCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getSubjectCompleted(this, new getSubjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("deleteSubject", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1265,48 +1307,6 @@ namespace Eos.Enteprise {
             if ((this.saveSubjectCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.saveSubjectCompleted(this, new saveSubjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("getSubject", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SubjectTO getSubject([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int subjectId) {
-            object[] results = this.Invoke("getSubject", new object[] {
-                        subjectId});
-            return ((SubjectTO)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BegingetSubject(int subjectId, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("getSubject", new object[] {
-                        subjectId}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public SubjectTO EndgetSubject(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((SubjectTO)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getSubjectAsync(int subjectId) {
-            this.getSubjectAsync(subjectId, null);
-        }
-        
-        /// <remarks/>
-        public void getSubjectAsync(int subjectId, object userState) {
-            if ((this.getSubjectOperationCompleted == null)) {
-                this.getSubjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetSubjectOperationCompleted);
-            }
-            this.InvokeAsync("getSubject", new object[] {
-                        subjectId}, this.getSubjectOperationCompleted, userState);
-        }
-        
-        private void OngetSubjectOperationCompleted(object arg) {
-            if ((this.getSubjectCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getSubjectCompleted(this, new getSubjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1883,6 +1883,32 @@ namespace Eos.Enteprise {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    public delegate void getSubjectCompletedEventHandler(object sender, getSubjectCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getSubjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getSubjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public SubjectTO Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((SubjectTO)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
     public delegate void deleteSubjectCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
@@ -1965,32 +1991,6 @@ namespace Eos.Enteprise {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    public delegate void getSubjectCompletedEventHandler(object sender, getSubjectCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getSubjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getSubjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public SubjectTO Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((SubjectTO)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="TaskServicePortBinding", Namespace="http://eos.com/")]
@@ -2002,7 +2002,7 @@ namespace Eos.Enteprise {
         
         /// <remarks/>
         public TaskService() {
-            this.Url = "http://66.90.217.15:8080/eos-services/TaskService";
+            this.Url = "http://localhost:8080/eos-services/TaskService";
         }
         
         /// <remarks/>
@@ -2127,4 +2127,95 @@ namespace Eos.Enteprise {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
     public delegate void deleteTaskCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Web.Services.WebServiceBindingAttribute(Name="SubjectReportServicePortBinding", Namespace="http://eos.com/")]
+    public partial class SubjectReportService : System.Web.Services.Protocols.SoapHttpClientProtocol {
+        
+        private System.Threading.SendOrPostCallback createSubjectReportOperationCompleted;
+        
+        /// <remarks/>
+        public SubjectReportService() {
+            this.Url = "http://localhost:8080/eos-services/SubjectReportService";
+        }
+        
+        /// <remarks/>
+        public event createSubjectReportCompletedEventHandler createSubjectReportCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public binaryTO createSubjectReport([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int userId) {
+            object[] results = this.Invoke("createSubjectReport", new object[] {
+                        userId});
+            return ((binaryTO)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BegincreateSubjectReport(int userId, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("createSubjectReport", new object[] {
+                        userId}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public binaryTO EndcreateSubjectReport(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((binaryTO)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void createSubjectReportAsync(int userId) {
+            this.createSubjectReportAsync(userId, null);
+        }
+        
+        /// <remarks/>
+        public void createSubjectReportAsync(int userId, object userState) {
+            if ((this.createSubjectReportOperationCompleted == null)) {
+                this.createSubjectReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateSubjectReportOperationCompleted);
+            }
+            this.InvokeAsync("createSubjectReport", new object[] {
+                        userId}, this.createSubjectReportOperationCompleted, userState);
+        }
+        
+        private void OncreateSubjectReportOperationCompleted(object arg) {
+            if ((this.createSubjectReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.createSubjectReportCompleted(this, new createSubjectReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        public new void CancelAsync(object userState) {
+            base.CancelAsync(userState);
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    public delegate void createSubjectReportCompletedEventHandler(object sender, createSubjectReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class createSubjectReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal createSubjectReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public binaryTO Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((binaryTO)(this.results[0]));
+            }
+        }
+    }
 }

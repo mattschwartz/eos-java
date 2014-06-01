@@ -49,7 +49,10 @@ namespace EOS {
             // Sends to server, checks data, gets result
             bool success = false; //loginUser(username, hashedPassword);
             UserService service = new UserService();
-            service.test("");
+            UserTO user = service.authenticateUser(username, hashedPassword);
+            if (user != null) {
+                success = true;
+            }
 
             if (!success) {
                 MessageBox.Show("Incorrect username or password. Please try again.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -48,7 +48,7 @@ public class UserManagerBean
     {
         User user = crudService.find(getUserIdByUsername(username), User.class);
 
-        if (Arrays.equals(Utility.fromHex(password), Utility.fromHex(user.getPassword().split(":")[1]))) {
+        if (user != null && user.getPassword().equals(password)) {
             return getUserTO(user);
         } else {
             return null;
