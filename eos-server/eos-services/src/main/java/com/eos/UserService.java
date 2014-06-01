@@ -128,4 +128,11 @@ public class UserService
     {
         return userManager.getUsers(ids);
     }
+    
+    @WebMethod(action = "test")
+    public String test(
+            @WebParam(name = "data") String data) 
+    {
+        return data;
+    }
 }
