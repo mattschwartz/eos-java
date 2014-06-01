@@ -53,6 +53,8 @@ namespace Eos.Enteprise {
         
         private System.Threading.SendOrPostCallback authenticateByEmailOperationCompleted;
         
+        private System.Threading.SendOrPostCallback testOperationCompleted;
+        
         /// <remarks/>
         public UserService() {
             this.Url = "http://66.90.217.15:8080/eos-services/UserService";
@@ -96,6 +98,9 @@ namespace Eos.Enteprise {
         
         /// <remarks/>
         public event authenticateByEmailCompletedEventHandler authenticateByEmailCompleted;
+        
+        /// <remarks/>
+        public event testCompletedEventHandler testCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("authenticateUser", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -644,6 +649,48 @@ namespace Eos.Enteprise {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("test", RequestNamespace="http://eos.com/", ResponseNamespace="http://eos.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string test([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string data) {
+            object[] results = this.Invoke("test", new object[] {
+                        data});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult Begintest(string data, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("test", new object[] {
+                        data}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public string Endtest(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void testAsync(string data) {
+            this.testAsync(data, null);
+        }
+        
+        /// <remarks/>
+        public void testAsync(string data, object userState) {
+            if ((this.testOperationCompleted == null)) {
+                this.testOperationCompleted = new System.Threading.SendOrPostCallback(this.OntestOperationCompleted);
+            }
+            this.InvokeAsync("test", new object[] {
+                        data}, this.testOperationCompleted, userState);
+        }
+        
+        private void OntestOperationCompleted(object arg) {
+            if ((this.testCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.testCompleted(this, new testCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -986,6 +1033,32 @@ namespace Eos.Enteprise {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((UserTO)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    public delegate void testCompletedEventHandler(object sender, testCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "2.0.50727.3038")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class testCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal testCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }
