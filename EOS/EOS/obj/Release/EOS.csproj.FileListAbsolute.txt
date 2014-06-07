@@ -10,3 +10,6 @@ E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Release\EOS.Properties.Resour
 E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Release\EOS.csproj.GenerateResource.Cache
 E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Release\EOS.exe
 E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Release\EOS.pdb
+E:\Users\matt\GitHub\eos\EOS\EOS\bin\Release\EOS.exe.config
+E:\Users\matt\GitHub\eos\EOS\EOS\obj\Release\EOS.exe
+E:\Users\matt\GitHub\eos\EOS\EOS\obj\Release\EOS.pdb

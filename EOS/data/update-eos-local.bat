@@ -1,2 +1,0 @@
-del EosBase.cs
-"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\wsdl.exe" /namespace:Eos.Enteprise /o:EosBase.cs /sharetypes http://localhost:8080/eos-services/UserService?wsdl http://localhost:8080/eos-services/SubjectService?wsdl http://localhost:8080/eos-services/TaskService?wsdl http://localhost:8080/eos-services/SubjectReportService?wsdl

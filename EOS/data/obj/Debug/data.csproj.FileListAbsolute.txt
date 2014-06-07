@@ -1,5 +1,0 @@
-C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\bin\Debug\data.exe.config
-C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\bin\Debug\data.exe
-C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\bin\Debug\data.pdb
-C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\obj\Debug\data.exe
-C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\data\obj\Debug\data.pdb
