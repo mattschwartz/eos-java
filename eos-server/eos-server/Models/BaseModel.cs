@@ -14,5 +14,23 @@ namespace eos.server.Models {
             get;
             set;
         }
+
+        [Column("deleted")]
+        public Boolean deleted {
+            get;
+            set;
+        }
+
+        [Column("deleted_date_time")]
+        public DateTime deletedOn {
+            get;
+            set;
+        }
+
+        [Column("deleted_by")]
+        public User deletedBy {
+            get;
+            set;
+        }
     }
 }

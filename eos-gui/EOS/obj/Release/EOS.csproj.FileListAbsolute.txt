@@ -16,3 +16,14 @@ E:\Users\matt\GitHub\eos\EOS\EOS\obj\Release\EOS.pdb
 E:\Users\matt\GitHub\eos\eos-gui\EOS\bin\Release\EOS.exe.config
 E:\Users\matt\GitHub\eos\eos-gui\EOS\obj\Release\EOS.exe
 E:\Users\matt\GitHub\eos\eos-gui\EOS\obj\Release\EOS.pdb
+E:\Users\matt\GitHub\eos\eos-gui\EOS\bin\Release\EOS.exe
+E:\Users\matt\GitHub\eos\eos-gui\EOS\bin\Release\EOS.pdb
+E:\Users\matt\GitHub\eos\eos-gui\EOS\bin\Release\EOS.exe.CodeAnalysisLog.xml
+E:\Users\matt\GitHub\eos\eos-gui\EOS\bin\Release\EOS.exe.lastcodeanalysissucceeded
+E:\Users\matt\GitHub\eos\eos-gui\EOS\obj\Release\EOS.csprojResolveAssemblyReference.cache
+E:\Users\matt\GitHub\eos\eos-gui\EOS\obj\Release\EOS.app.AccountCreationForm.resources
+E:\Users\matt\GitHub\eos\eos-gui\EOS\obj\Release\EOS.LoginForm.resources
+E:\Users\matt\GitHub\eos\eos-gui\EOS\obj\Release\EOS.app.MainForm.resources
+E:\Users\matt\GitHub\eos\eos-gui\EOS\obj\Release\EOS.app.SettingsForm.resources
+E:\Users\matt\GitHub\eos\eos-gui\EOS\obj\Release\EOS.Properties.Resources.resources
+E:\Users\matt\GitHub\eos\eos-gui\EOS\obj\Release\EOS.csproj.GenerateResource.Cache

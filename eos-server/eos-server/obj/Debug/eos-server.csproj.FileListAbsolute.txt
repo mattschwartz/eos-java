@@ -70,3 +70,4 @@ E:\Users\matt\GitHub\eos\eos-server\eos-server\bin\zh-Hant\System.Spatial.resour
 E:\Users\matt\GitHub\eos\eos-server\eos-server\obj\Debug\eos-server.csprojResolveAssemblyReference.cache
 E:\Users\matt\GitHub\eos\eos-server\eos-server\obj\Debug\eos-server.dll
 E:\Users\matt\GitHub\eos\eos-server\eos-server\obj\Debug\eos-server.pdb
+E:\Users\matt\GitHub\eos\eos-server\eos-server\bin\eos-server.dll.CodeAnalysisLog.xml
