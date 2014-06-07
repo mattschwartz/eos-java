@@ -1,0 +1,14 @@
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\bin\Release\EOS.exe.config
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\bin\Release\EOS.exe
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\bin\Release\EOS.pdb
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\obj\Release\EOS.csprojResolveAssemblyReference.cache
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\obj\Release\EOS.app.AccountCreationForm.resources
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\obj\Release\EOS.LoginForm.resources
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\obj\Release\EOS.app.MainForm.resources
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\obj\Release\EOS.app.SettingsForm.resources
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\obj\Release\EOS.Properties.Resources.resources
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\obj\Release\EOS.csproj.GenerateResource.Cache
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\obj\Release\EOS.exe
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\obj\Release\EOS.pdb
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\bin\Release\data.exe
+C:\Users\Andrew\Documents\Projects\eos\visual studio\EOS\EOS\bin\Release\data.pdb
