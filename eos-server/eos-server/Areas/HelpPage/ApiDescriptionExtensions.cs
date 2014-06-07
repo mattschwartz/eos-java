@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace eos_server.Areas.HelpPage
+namespace eos.server.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

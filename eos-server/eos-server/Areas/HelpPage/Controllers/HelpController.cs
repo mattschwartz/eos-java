@@ -1,9 +1,9 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using eos_server.Areas.HelpPage.Models;
+using eos.server.Areas.HelpPage.Models;
 
-namespace eos_server.Areas.HelpPage.Controllers
+namespace eos.server.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

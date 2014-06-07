@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace eos_server.Controllers {
+namespace eos.server.Controllers {
     public class ValuesController : ApiController {
         // GET api/values
         public IEnumerable<string> Get() {

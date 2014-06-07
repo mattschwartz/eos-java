@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace eos_server.Areas.HelpPage
+namespace eos.server.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

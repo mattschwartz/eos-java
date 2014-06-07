@@ -7,9 +7,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Description;
-using eos_server.Areas.HelpPage.Models;
+using eos.server.Areas.HelpPage.Models;
 
-namespace eos_server.Areas.HelpPage
+namespace eos.server.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

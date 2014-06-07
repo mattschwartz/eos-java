@@ -1,6 +1,6 @@
 using System;
 
-namespace eos_server.Areas.HelpPage
+namespace eos.server.Areas.HelpPage
 {
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
