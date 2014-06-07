@@ -154,12 +154,6 @@
   <ItemGroup>
     <None Include="Resources\icon_39891.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\data\Data.csproj">
-      <Project>{469125fd-267c-4321-a13c-3d1cf8991faf}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
