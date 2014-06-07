@@ -14,23 +14,15 @@ namespace eos_server.Models
         [Column("xPos")]
         public Int32 xPos { get; set; }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("yPos")]
         public Int32 yPos { get; set; }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("name")]
         public Int32 name { get; set; }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("comments")]
         public Int32 comments { get; set; }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("color")]
         public Int32 color { get; set; }
 
