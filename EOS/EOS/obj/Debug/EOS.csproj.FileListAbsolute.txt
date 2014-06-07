@@ -1,0 +1,12 @@
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\bin\Debug\EOS.exe.config
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\bin\Debug\EOS.exe
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\bin\Debug\EOS.pdb
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.csprojResolveAssemblyReference.cache
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.loginForm.resources
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.app.MainForm.resources
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.Properties.Resources.resources
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.csproj.GenerateResource.Cache
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.exe
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.pdb
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.app.AccountCreationForm.resources
+E:\Users\matt\GitHub\eos\visual studio\EOS\EOS\obj\Debug\EOS.app.SettingsForm.resources
