@@ -20,5 +20,9 @@ namespace eos.server.Models
         public DateTime endDate { get; set; }
 
         public String location { get; set; }
+
+        public User user { get; set; }
+
+        public Calendar calendar { get; set; }
     }
 }

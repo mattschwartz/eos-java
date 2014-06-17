@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using eos.server.Models;
 
-namespace eos_server.Models
+namespace eos.server.Models
 {
     [Table("eos_Calendars")]
     public class Calendar : BaseModel
