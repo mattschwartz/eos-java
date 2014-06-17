@@ -6,22 +6,27 @@ using System.Linq;
 using System.Web;
 
 namespace eos.server.Models {
+
+    [Table("eos_Tasks")]
     public class Task : BaseModel {
 
-        [Column("name")]
-        public Int32 name {
+        public String name {
             get;
             set;
         }
 
-        [Column("comments")]
-        public Int32 comments {
+        public String comments {
             get;
             set;
         }
 
-        [Column("color")]
-        public Int32 color {
+        public String color {
+            get;
+            set;
+        }
+
+        public User user
+        {
             get;
             set;
         }
