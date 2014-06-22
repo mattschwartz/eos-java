@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using eos.Models.Data;
 
-namespace eos.Models
+namespace eos.Models.Users
 {
     [Table("eos_Users")]
     public class User : BaseModel
@@ -26,11 +26,5 @@ namespace eos.Models
         [Column("password")]
         [Display(Name = "Password")]
         public String password { get; set; }
-
-        // why does user have a user on it
-        [Column("user_id")]
-        [Display(Name = "User")]
-        public Int32 UserId { get; set; }
-        public virtual User user { get; set; }
     }
 }

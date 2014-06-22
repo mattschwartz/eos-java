@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using eos.Models.Users;
 
 namespace eos.Models.Data
 {
@@ -29,7 +30,7 @@ namespace eos.Models.Data
         [Display(Name = "Deleted By")]
         public User deletedBy { get; set; }
 
-        [Column("deleted_date_time")]
+        [Column("deleted_date_time", TypeName = "DateTime2")]
         [Display(Name = "Deleted On")]
         public DateTime deletedOn { get; set; }
 
@@ -37,7 +38,7 @@ namespace eos.Models.Data
         [Display(Name = "Created By")]
         public User createdBy { get; set; }
 
-        [Column("created_date_time")]
+        [Column("created_date_time", TypeName = "DateTime2")]
         [Display(Name = "Created On")]
         public DateTime createdOn { get; set; }
     }

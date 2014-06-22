@@ -5,8 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using eos.Models.Data;
+using eos.Models.Users;
 
-namespace eos.Models
+namespace eos.Models.Tasks
 {
     [Table("eos_tasks")]
     public class Task : BaseModel

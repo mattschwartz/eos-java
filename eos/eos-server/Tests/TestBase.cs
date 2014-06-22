@@ -9,13 +9,13 @@ namespace eos.Tests
     public class TestBase
     {
         [SetUp]
-        public void SetUp
+        public void SetUp()
         {
 
         }
 
         [TearDown]
-        public void TearDown
+        public void TearDown()
         {
 
         }

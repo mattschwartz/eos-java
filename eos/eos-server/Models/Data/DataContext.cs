@@ -4,8 +4,11 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.IO;
 using System.Reflection;
+using eos.Models.Subjects;
+using eos.Models.Users;
+using eos.Models.Tasks;
 
-namespace eos.Models
+namespace eos.Models.Data
 {
     public class DataContext : DbContext
     {
@@ -23,6 +26,10 @@ namespace eos.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Task>().HasRequired(t => t.user);
+            modelBuilder.Entity<Task>().HasOptional(t => t.deletedBy);
+            modelBuilder.Entity<Subject>().HasRequired(t => t.user);
+            modelBuilder.Entity<Subject>().HasOptional(t => t.deletedBy);
             //modelBuilder.Entity<BinSizing>().HasRequired(t => t.Sizing).WithMany();
             //modelBuilder.Entity<Customer>().HasMany(x => x.Locations).WithMany(x => x.Customers).Map(x => { x.ToTable("aztec_customer_locations"); x.MapLeftKey("customer_id"); x.MapRightKey("location_id"); });
             //modelBuilder.Entity<EmbellishmentPricingCharge>().HasOptional(i => i.AttributeType).WithMany(x => x.PricingCharges);
@@ -97,7 +104,6 @@ namespace eos.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Subject> Subjects { get; set; }
-
 
         #endregion
     }
