@@ -22,24 +22,24 @@ namespace eos.Models.Users
 
         public int Save(User data)
         {
-            var user = this.Context.Users.Find(data.id);
+            var user = this.Context.Users.Find(data.Id);
 
             if (user == null) {
                 user = data;
 
                 this.Context.Users.Add(user);
             } else {
-                user.deleted = data.deleted;
-                user.deletedBy = data.deletedBy;
-                user.deletedOn = data.deletedOn;
-                user.email = data.email;
-                user.firstName = data.firstName;
-                user.lastName = data.lastName;
-                user.password = data.password;
+                user.Deleted = data.Deleted;
+                user.DeletedBy = data.DeletedBy;
+                user.DeletedOn = data.DeletedOn;
+                user.Email = data.Email;
+                user.FirstName = data.FirstName;
+                user.LastName = data.LastName;
+                user.Password = data.Password;
             }
 
             this.Context.SaveChanges();
-            return user.id;
+            return user.Id;
         }
     }
 }

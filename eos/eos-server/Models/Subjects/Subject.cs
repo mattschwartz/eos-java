@@ -9,20 +9,21 @@ using eos.Models.Users;
 
 namespace eos.Models.Subjects
 {
-    [Table("eos_Subjects")]
+    [Table("eos_subjects")]
     public class Subject : BaseModel
     {
         [Column("x_pos")]
         [Display(Name = "X Pos")]
-        public Int32 xPos { get; set; }
+        public Int32 XPos { get; set; }
 
         [Column("y_pos")]
         [Display(Name = "Y Pos")]
-        public Int32 yPos { get; set; }
+        public Int32 YPos { get; set; }
 
+        [ForeignKey("User")]
         [Column("user_id")]
         [Display(Name = "User")]
         public Int32 UserId { get; set; }
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
     }
 }

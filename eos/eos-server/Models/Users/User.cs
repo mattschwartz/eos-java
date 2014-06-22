@@ -5,45 +5,44 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using eos.Models.Data;
+using eos.Models.Subjects;
 using eos.Models.Tasks;
 
 namespace eos.Models.Users
 {
-    [Table("eos_Users")]
+    [Table("eos_users")]
     public class User : BaseModel
     {
         [Column("first_name")]
         [Display(Name = "First Name")]
-        public String firstName { get; set; }
+        public String FirstName { get; set; }
 
         [Column("last_name")]
         [Display(Name = "Last Name")]
-        public String lastName { get; set; }
+        public String LastName { get; set; }
 
         [Column("email")]
         [Display(Name = "Email")]
-        public String email { get; set; }
+        public String Email { get; set; }
 
         [Column("password")]
         [Display(Name = "Password")]
-        public String password { get; set; }
+        public String Password { get; set; }
 
         public static void Seed(DataContext context)
         {
             var users = new List<User>
             {
                 new User {
-                    firstName = "First Name",
-                    lastName = "Last Name",
-                    email = "Email",
-                    password = "password"
+                    FirstName = "First Name",
+                    LastName = "Last Name",
+                    Email = "Email",
+                    Password = "password"
                 }
             };
 
             context.Users.AddRange(users);
             context.SaveChanges();
         }
-
-        public virtual List<Task> Tasks { get; set; }
     }
 }

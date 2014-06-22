@@ -26,10 +26,14 @@ namespace eos.Models.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Task>().HasRequired(t => t.user);
-            modelBuilder.Entity<Task>().HasOptional(t => t.deletedBy);
-            modelBuilder.Entity<Subject>().HasRequired(t => t.user);
-            modelBuilder.Entity<Subject>().HasOptional(t => t.deletedBy);
+            modelBuilder.Entity<Task>().HasRequired(t => t.User);
+            modelBuilder.Entity<Task>().HasOptional(t => t.DeletedBy);
+            modelBuilder.Entity<Task>().HasRequired(t => t.CreatedBy);
+            modelBuilder.Entity<Subject>().HasRequired(t => t.User);
+            modelBuilder.Entity<Subject>().HasOptional(t => t.DeletedBy);
+            modelBuilder.Entity<Subject>().HasRequired(t => t.CreatedBy);
+            modelBuilder.Entity<User>().HasRequired(t => t.CreatedBy);
+            modelBuilder.Entity<User>().HasOptional(t => t.DeletedBy);
             //modelBuilder.Entity<BinSizing>().HasRequired(t => t.Sizing).WithMany();
             //modelBuilder.Entity<Customer>().HasMany(x => x.Locations).WithMany(x => x.Customers).Map(x => { x.ToTable("aztec_customer_locations"); x.MapLeftKey("customer_id"); x.MapRightKey("location_id"); });
             //modelBuilder.Entity<EmbellishmentPricingCharge>().HasOptional(i => i.AttributeType).WithMany(x => x.PricingCharges);

@@ -14,21 +14,20 @@ namespace eos.Models.Tasks
     {
         [Column("name")]
         [Display(Name = "Name")]
-        public String name { get; set; }
+        public String Name { get; set; }
 
         [Column("comments")]
         [Display(Name = "Comments")]
-        public String comments { get; set; }
+        public String Comments { get; set; }
 
         [Column("color")]
         [Display(Name = "Color")]
-        public String color { get; set; }
+        public String Color { get; set; }
 
         [ForeignKey("User")]
-        [Column("user")]
+        [Column("user_id")]
         [Display(Name = "User")]
         public Int32? UserId { get; set; }
-        public virtual User user { get; set; }
-
+        public virtual User User { get; set; }
     }
 }

@@ -21,19 +21,19 @@ namespace eos.Models.Subjects
 
         public int Save(Subject data)
         {
-            var subject = this.Context.Subjects.Find(data.id);
+            var subject = this.Context.Subjects.Find(data.Id);
 
             if (subject == null) {
                 subject = data;
 
                 this.Context.Subjects.Add(subject);
             } else {
-                subject.xPos = data.xPos;
-                subject.yPos = data.yPos;
+                subject.XPos = data.XPos;
+                subject.YPos = data.YPos;
             }
 
             this.Context.SaveChanges();
-            return subject.id;
+            return subject.Id;
         }
     }
 }

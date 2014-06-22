@@ -12,34 +12,34 @@ namespace eos.Models.Data
     {
         public BaseModel()
         {
-            this.deleted = false;
-            this.createdOn = DateTime.Now;
+            this.Deleted = false;
+            this.CreatedOn = DateTime.Now;
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         [Display(Name = "ID")]
-        public Int32 id { get; set; }
+        public Int32 Id { get; set; }
         
         [Column("deleted")]
         [Display(Name = "Deleted")]
-        public Boolean deleted { get; set; }
+        public Boolean Deleted { get; set; }
 
         [Column("deleted_by")]
         [Display(Name = "Deleted By")]
-        public User deletedBy { get; set; }
+        public User DeletedBy { get; set; }
 
         [Column("deleted_date_time", TypeName = "DateTime2")]
         [Display(Name = "Deleted On")]
-        public DateTime deletedOn { get; set; }
+        public DateTime DeletedOn { get; set; }
 
         [Column("created_by")]
         [Display(Name = "Created By")]
-        public User createdBy { get; set; }
+        public User CreatedBy { get; set; }
 
         [Column("created_date_time", TypeName = "DateTime2")]
         [Display(Name = "Created On")]
-        public DateTime createdOn { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

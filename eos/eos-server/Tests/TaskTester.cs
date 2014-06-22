@@ -15,31 +15,31 @@ namespace eos.Tests
         {
             using (var manager = new TaskManager()) {
                 Task task = new Task {
-                    name = "Test",
-                    comments = "Test",
-                    color = "Test",
+                    Name = "Test",
+                    Comments = "Test",
+                    Color = "Test",
                     UserId = 1
                 };
 
-                task.id = manager.Save(task);
+                task.Id = manager.Save(task);
 
-                if (task.id <= 0) {
-                    Assert.Fail("Tag failed to save and returned with an id of " + task.id);
+                if (task.Id <= 0) {
+                    Assert.Fail("Tag failed to save and returned with an id of " + task.Id);
                 }
 
-                task = manager.GetById(task.id);
+                task = manager.GetById(task.Id);
 
                 if (task == null) {
                     Assert.Fail("The tag was not found in the database.");
                 }
 
-                if (task.name != "Test" || task.comments != "Test" || task.color != "Test") {
+                if (task.Name != "Test" || task.Comments != "Test" || task.Color != "Test") {
                     Assert.Fail("The tag retrieved was not the tag that was saved.");
                 }
 
-                manager.Delete(task.id);
+                manager.Delete(task.Id);
 
-                if (manager.GetById(task.id) != null) {
+                if (manager.GetById(task.Id) != null) {
                     Assert.Fail("Deleted tag still exists in database.");
                 }
             }
