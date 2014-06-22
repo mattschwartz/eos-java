@@ -24,9 +24,11 @@ namespace eos.Models.Tasks
         [Display(Name = "Color")]
         public String color { get; set; }
 
+        [ForeignKey("User")]
         [Column("user")]
         [Display(Name = "User")]
-        public Int32 UserId { get; set; }
+        public Int32? UserId { get; set; }
         public virtual User user { get; set; }
+
     }
 }

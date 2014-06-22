@@ -81,7 +81,7 @@ namespace eos.Models.Data
 
         public void Seed()
         {
-            //User.Seed(this);
+            User.Seed(this);
         }
 
         public void Unseed()

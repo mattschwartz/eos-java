@@ -41,21 +41,5 @@ namespace eos.Models.Users
             this.Context.SaveChanges();
             return user.id;
         }
-
-        public static void Seed(DataContext context)
-        {
-            var users = new List<User>
-            {
-                new User {
-                    firstName = "First Name",
-                    lastName = "Last Name",
-                    email = "Email",
-                    password = "password"
-                }
-            };
-
-            context.Users.AddRange(users);
-            context.SaveChanges();
-        }
     }
 }
