@@ -26,7 +26,7 @@ namespace eos.Models.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Task>().HasRequired(t => t.user)
+            modelBuilder.Entity<Task>().HasRequired(t => t.user);
             modelBuilder.Entity<Task>().HasOptional(t => t.deletedBy);
             modelBuilder.Entity<Subject>().HasRequired(t => t.user);
             modelBuilder.Entity<Subject>().HasOptional(t => t.deletedBy);
