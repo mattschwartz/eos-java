@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace eos.Models
+{
+    public class DataManager<T> : IDisposable where T : class
+    {
+        public DataContext Context = new DataContext();
+
+        public T GetById(int id)
+        {
+            return this.Context.Set<T>().Find(id);
+        }
+
+        public async Task<T> GetByIdAsync(int id)
+        {
+            return await this.Context.Set<T>().FindAsync(id);
+        }
+
+        public List<T> GetAll()
+        {
+            var result = this.Context.Set<T>();
+
+            if (result == null) {
+                return null;
+            }
+
+            return result.ToList();
+        }
+
+        public T Find(Expression<Func<T, bool>> match)
+        {
+            return this.Context.Set<T>().SingleOrDefault(match);
+        }
+
+        public ICollection<T> FindAll(Expression<Func<T, bool>> match)
+        {
+            return this.Context.Set<T>().Where(match).ToList();
+        }
+
+        public int Count()
+        {
+            return this.Context.Set<T>().Count();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        // The bulk of the clean-up code is implemented in Dispose(bool)
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing) {
+                // free managed resources
+                if (this.Context != null) {
+                    this.Context.Dispose();
+                    this.Context = null;
+                }
+            }
+        }
+    }
+}
