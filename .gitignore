@@ -1,4 +1,10 @@
 EOS/EOS/bin/
 EOS/EOS/obj/
-eos/eos-server/eos-server/obj
-eos/eos-server/eos-server/bin
+eos/eos/eos-server/obj
+eos/eos/eos-server/bin
+eos/eos/App_Data/aztec.mdf
+eos/eos/App_Data/aztec_log.ldf
+*.suo
+*.exe
+*.pdb
+*.user
