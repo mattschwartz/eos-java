@@ -29,6 +29,9 @@ namespace eos.Models.Users
         [Display(Name = "Password")]
         public String Password { get; set; }
 
+        public List<Subject> Subjects { get; set; }
+        public List<Task> Tasks { get; set; }
+
         public static void Seed(DataContext context)
         {
             var users = new List<User>
@@ -37,7 +40,8 @@ namespace eos.Models.Users
                     FirstName = "First Name",
                     LastName = "Last Name",
                     Email = "Email",
-                    Password = "password"
+                    Password = "password",
+                    //CreatedOn = DateTime.Now
                 }
             };
 

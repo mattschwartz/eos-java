@@ -12,8 +12,8 @@ namespace eos.Models.Data
     {
         public BaseModel()
         {
-            this.Deleted = false;
-            this.CreatedOn = DateTime.Now;
+            //this.Deleted = false;
+            //this.CreatedOn = DateTime.Now;
         }
 
         [Key]
@@ -22,24 +22,26 @@ namespace eos.Models.Data
         [Display(Name = "ID")]
         public Int32 Id { get; set; }
         
-        [Column("deleted")]
-        [Display(Name = "Deleted")]
-        public Boolean Deleted { get; set; }
+        //[Column("deleted")]
+        //[Display(Name = "Deleted")]
+        //public Boolean Deleted { get; set; }
 
-        [Column("deleted_by")]
-        [Display(Name = "Deleted By")]
-        public User DeletedBy { get; set; }
+        //[Column("deleted_by")]
+        //[Display(Name = "Deleted By")]
+        //public Int32? DeletedByUserId { get; set; }
+        //public User DeletedBy { get; set; }
 
-        [Column("deleted_date_time", TypeName = "DateTime2")]
-        [Display(Name = "Deleted On")]
-        public DateTime DeletedOn { get; set; }
+        //[Column("deleted_date_time", TypeName = "DateTime2")]
+        //[Display(Name = "Deleted On")]
+        //public DateTime? DeletedOn { get; set; }
 
-        [Column("created_by")]
-        [Display(Name = "Created By")]
-        public User CreatedBy { get; set; }
+        //[Column("created_by")]
+        //[Display(Name = "Created By")]
+        //public Int32? CreatedByuserId { get; set; }
+        //public User CreatedBy { get; set; }
 
-        [Column("created_date_time", TypeName = "DateTime2")]
-        [Display(Name = "Created On")]
-        public DateTime CreatedOn { get; set; }
+        //[Column("created_date_time", TypeName = "DateTime2")]
+        //[Display(Name = "Created On")]
+        //public DateTime? CreatedOn { get; set; }
     }
 }

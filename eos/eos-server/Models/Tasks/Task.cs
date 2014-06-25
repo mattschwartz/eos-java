@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using eos.Models.Data;
+using eos.Models.Subjects;
 using eos.Models.Users;
 
 namespace eos.Models.Tasks
@@ -27,7 +28,13 @@ namespace eos.Models.Tasks
         [ForeignKey("User")]
         [Column("user_id")]
         [Display(Name = "User")]
-        public Int32? UserId { get; set; }
+        public Int32 UserId { get; set; }
         public virtual User User { get; set; }
+
+        [ForeignKey("Subject")]
+        [Column("subject_id")]
+        [Display(Name = "Subject")]
+        public Int32 SubjectId { get; set; }
+        public virtual Subject Subject { get; set; }
     }
 }

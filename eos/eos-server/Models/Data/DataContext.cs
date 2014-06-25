@@ -26,42 +26,16 @@ namespace eos.Models.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Task>().HasRequired(t => t.User);
-            modelBuilder.Entity<Task>().HasOptional(t => t.DeletedBy);
-            modelBuilder.Entity<Task>().HasRequired(t => t.CreatedBy);
-            modelBuilder.Entity<Subject>().HasRequired(t => t.User);
-            modelBuilder.Entity<Subject>().HasOptional(t => t.DeletedBy);
-            modelBuilder.Entity<Subject>().HasRequired(t => t.CreatedBy);
-            modelBuilder.Entity<User>().HasRequired(t => t.CreatedBy);
-            modelBuilder.Entity<User>().HasOptional(t => t.DeletedBy);
-            //modelBuilder.Entity<BinSizing>().HasRequired(t => t.Sizing).WithMany();
-            //modelBuilder.Entity<Customer>().HasMany(x => x.Locations).WithMany(x => x.Customers).Map(x => { x.ToTable("aztec_customer_locations"); x.MapLeftKey("customer_id"); x.MapRightKey("location_id"); });
-            //modelBuilder.Entity<EmbellishmentPricingCharge>().HasOptional(i => i.AttributeType).WithMany(x => x.PricingCharges);
-            //modelBuilder.Entity<EmbellishmentPricingCharge>().HasOptional(i => i.ConditionalAttributeType).WithMany(x => x.ConditionalPricingCharges);
-            //modelBuilder.Entity<EmbellishmentType>().HasMany(x => x.AttributeTypes).WithMany(x => x.Types).Map(x => { x.ToTable("aztec_embellishment_type_attributes"); x.MapLeftKey("embellishmenttypeid"); x.MapRightKey("embellishmentattributetypeid"); });
-            //modelBuilder.Entity<ImageTemplate>().HasOptional(t => t.SelectedVersion).WithMany();
-            //modelBuilder.Entity<Job>().HasOptional(t => t.Bin).WithOptionalPrincipal();
-            //modelBuilder.Entity<Job>().HasOptional(t => t.OutsourcedPurchaseOrder).WithOptionalPrincipal();
-            //modelBuilder.Entity<Job>().HasRequired(t => t.Employee).WithMany();
-            //modelBuilder.Entity<Job>().HasRequired(t => t.SalesLocation).WithMany(t => t.SalesJobs);
-            //modelBuilder.Entity<Job>().HasRequired(t => t.ArtLocation).WithMany(t => t.ArtJobs);
-            //modelBuilder.Entity<Job>().HasRequired(t => t.ProductionLocation).WithMany(t => t.ProductionJobs);
-            //modelBuilder.Entity<JobPricingCharge>().HasRequired(t => t.JobAttributeType).WithMany(x => x.JobPricingCharges);
-            //modelBuilder.Entity<JobPricingCharge>().HasOptional(t => t.ConditionalJobAttributeType).WithMany(x => x.ConditionalJobPricingCharges);
-            //modelBuilder.Entity<LineItem>().HasRequired(t => t.Job).WithMany();
-            //modelBuilder.Entity<Location>().HasOptional(t => t.SalesLocation).WithMany();
-            //modelBuilder.Entity<Location>().HasOptional(t => t.ArtLocation).WithMany();
-            //modelBuilder.Entity<Location>().HasOptional(t => t.ProductionLocation).WithMany();
-            //modelBuilder.Entity<Note>().HasOptional(t => t.Sizings).WithOptionalPrincipal();
-            //modelBuilder.Entity<OutsourcedJob>().HasRequired(t => t.Job).WithMany();
-            //modelBuilder.Entity<Payment>().HasOptional(t => t.Prepayment).WithOptionalPrincipal();
-            //modelBuilder.Entity<Reminder>().HasOptional(t => t.JobNote).WithOptionalPrincipal();
-            //modelBuilder.Entity<Reminder>().HasOptional(t => t.Note).WithOptionalPrincipal();
-            //modelBuilder.Entity<SizedImage>().HasRequired(t => t.ArtMessage).WithRequiredPrincipal();
-            //modelBuilder.Entity<Sizing>().HasOptional(t => t.Note).WithMany(x => x.Sizings);
-            //modelBuilder.Entity<Tag>().HasRequired(t => t.ValueImageTag).WithRequiredPrincipal();
-            //modelBuilder.Entity<ValueImageTag>().HasOptional(t => t.ValueImage).WithMany();
-
+            //modelBuilder.Entity<Task>().HasOptional(t => t.DeletedBy);
+            //modelBuilder.Entity<Task>().HasRequired(t => t.CreatedBy);
+            //modelBuilder.Entity<Subject>().HasOptional(t => t.DeletedBy);
+            //modelBuilder.Entity<Subject>().HasRequired(t => t.CreatedBy);
+            //modelBuilder.Entity<User>().HasRequired(t => t.CreatedBy).WithOptional(x => x.);
+            //modelBuilder.Entity<User>().HasOptional(t => t.DeletedBy);
+            modelBuilder.Entity<Task>().HasRequired(t => t.User).WithMany(x => x.Tasks);
+            modelBuilder.Entity<Subject>().HasOptional(t => t.User).WithMany(x => x.Subjects);
+            //modelBuilder.Entity<User>().HasOptional(t => t.CreatedBy).WithOptionalDependent();
+            
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }

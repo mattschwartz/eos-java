@@ -6,15 +6,43 @@ using System.Threading.Tasks;
 using System.Web;
 using eos.Models.Data;
 
-namespace eos.Models
+namespace Aztec.Data.Data
 {
-    public class DataManager<T> : IDisposable where T : class
+    public class DataManager<T> : IDisposable where T : BaseModel
     {
         public DataContext Context = new DataContext();
 
         public T GetById(int id)
         {
             return this.Context.Set<T>().Find(id);
+        }
+
+        public void Delete(int id)
+        {
+            var entity = GetById(id);
+
+            if (entity == null) {
+                return;
+            }
+
+            this.Context.Set<T>().Remove(entity);
+            this.Context.SaveChanges();
+        }
+
+        public int Save(T data)
+        {
+            var entity = GetById(data.Id);
+
+            if (entity == null) {
+                this.Context.Set<T>().Add(data);
+                entity = data;
+            } else {
+                this.Context.Entry(entity).CurrentValues.SetValues(data);
+            }
+
+            this.Context.SaveChanges();
+
+            return entity.Id;
         }
 
         public async Task<T> GetByIdAsync(int id)

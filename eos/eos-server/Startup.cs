@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using eos.Models.Data;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(eos.Startup))]
@@ -9,6 +10,7 @@ namespace eos
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            DataContext.Setup();
         }
     }
 }

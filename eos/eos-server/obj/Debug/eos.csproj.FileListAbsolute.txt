@@ -57,3 +57,5 @@ C:\Users\Andrew\Documents\Projects\eos\eos\eos-server\bin\Microsoft.Owin.Securit
 C:\Users\Andrew\Documents\Projects\eos\eos\eos-server\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Andrew\Documents\Projects\eos\eos\eos-server\obj\Debug\eos-server.dll
 C:\Users\Andrew\Documents\Projects\eos\eos\eos-server\obj\Debug\eos-server.pdb
+C:\Users\Andrew\Documents\Projects\eos\eos\eos-server\obj\Debug\eos.Properties.Resources.resources
+C:\Users\Andrew\Documents\Projects\eos\eos\eos-server\obj\Debug\eos.csproj.GenerateResource.Cache
