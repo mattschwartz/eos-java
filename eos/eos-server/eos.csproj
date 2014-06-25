@@ -201,6 +201,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Tests\SubjectTester.cs" />
     <Compile Include="Tests\TaskTester.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Tests\UserTester.cs" />

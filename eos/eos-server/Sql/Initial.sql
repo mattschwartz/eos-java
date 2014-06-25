@@ -79,50 +79,55 @@ BEGIN
 END;
 
 /* Create all tables */
-CREATE TABLE eos_subjects(
-    id           INTEGER IDENTITY(1,1) NOT NULL ,
-    xpos         INTEGER NOT NULL ,
-    ypos         INTEGER NOT NULL ,
-    title        VARCHAR (Max) ,
-    color        VARCHAR (Max) ,
-    details      VARCHAR (Max) ,
-    radius       DECIMAL (28) ,
-    eos_users_id INTEGER NOT NULL ,
-    CONSTRAINT eos_subjects_PK PRIMARY KEY CLUSTERED (id)
-WITH( ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON ) ON "default" ) ON "default"
+CREATE TABLE eos_subjects 
+  ( 
+     [id]             INTEGER IDENTITY(1, 1) NOT NULL, 
+     [xpos]           INTEGER NOT NULL, 
+     [ypos]			  INTEGER NOT NULL, 
+     [title]		  VARCHAR (max), 
+     [color]		  VARCHAR (max), 
+     [details]		  VARCHAR (max), 
+     [radius]		  DECIMAL (28), 
+     [user_id]        INTEGER NOT NULL, 
+     CONSTRAINT eos_subjects_pk PRIMARY KEY CLUSTERED (id) WITH( 
+     allow_page_locks = on, allow_row_locks = on ) ON "default" 
+  ) 
+ON "default" 
 
-CREATE TABLE eos_tasks(
-    id              INTEGER IDENTITY(1,1) NOT NULL ,
-    xpos            INTEGER ,
-    ypos            INTEGER ,
-    title           VARCHAR (Max) ,
-	color           VARCHAR (Max) ,
-    eos_subjects_id INTEGER NOT NULL ,
-    CONSTRAINT eos_tasks_PK PRIMARY KEY CLUSTERED (id)
-WITH( ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON ) ON "default" ) ON "default"
+CREATE TABLE eos_tasks 
+  ( 
+     [id]              INTEGER IDENTITY(1, 1) NOT NULL, 
+     [title]           VARCHAR (max), 
+     [color]           VARCHAR (max), 
+     [comments]        VARCHAR (max), 
+     [subject_id]      INTEGER NOT NULL, 
+	 [user_id]        INTEGER NOT NULL, 
+     CONSTRAINT eos_tasks_pk PRIMARY KEY CLUSTERED (id) WITH( allow_page_locks = 
+     on, allow_row_locks = on ) ON "default" 
+  ) 
+ON "default" 
 
-CREATE TABLE eos_users(
-    id         INTEGER IDENTITY(1,1) NOT NULL ,
-    first_name VARCHAR (Max) ,
-    last_name  VARCHAR (Max) ,
-    username   VARCHAR (Max) ,
-    email      VARCHAR (Max) ,
-    password   VARCHAR (Max) ,
-    CONSTRAINT eos_users_PK PRIMARY KEY CLUSTERED (id)
-WITH( ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON ) ON "default" ) ON "default"
+CREATE TABLE eos_users 
+  ( 
+     [id]              INTEGER IDENTITY(1, 1) NOT NULL, 
+     [first_name]	   VARCHAR (max), 
+     [last_name]       VARCHAR (max), 
+     [username]        VARCHAR (max), 
+     [email]           VARCHAR (max), 
+     [password]        VARCHAR (max), 
+     CONSTRAINT eos_users_pk PRIMARY KEY CLUSTERED (id) WITH( allow_page_locks = 
+     on, allow_row_locks = on ) ON "default" 
+  ) 
+ON "default" 
 
-ALTER TABLE eos_subjects
-ADD CONSTRAINT eos_subjects_eos_users_FK FOREIGN KEY ( eos_users_id )
-REFERENCES eos_users ( id )
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE eos_subjects 
+  ADD CONSTRAINT eos_subjects_eos_users_fk FOREIGN KEY ( [user_id] ) 
+  REFERENCES eos_users ( id ) ON DELETE no action ON UPDATE no action 
 
-ALTER TABLE eos_tasks
-ADD CONSTRAINT eos_tasks_eos_subjects_FK FOREIGN KEY ( eos_subjects_id )
-REFERENCES eos_subjects ( id )
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE eos_tasks 
+  ADD CONSTRAINT eos_tasks_eos_subjects_fk FOREIGN KEY ( [subject_id] ) 
+  REFERENCES eos_subjects ( id ) ON DELETE no action ON UPDATE no action 
+
+  ALTER TABLE eos_tasks 
+  ADD CONSTRAINT eos_tasks_eos_users_fk FOREIGN KEY ( [user_id] ) 
+  REFERENCES eos_users ( id ) ON DELETE no action ON UPDATE no action 

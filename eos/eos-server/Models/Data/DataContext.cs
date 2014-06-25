@@ -26,15 +26,8 @@ namespace eos.Models.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Task>().HasOptional(t => t.DeletedBy);
-            //modelBuilder.Entity<Task>().HasRequired(t => t.CreatedBy);
-            //modelBuilder.Entity<Subject>().HasOptional(t => t.DeletedBy);
-            //modelBuilder.Entity<Subject>().HasRequired(t => t.CreatedBy);
-            //modelBuilder.Entity<User>().HasRequired(t => t.CreatedBy).WithOptional(x => x.);
-            //modelBuilder.Entity<User>().HasOptional(t => t.DeletedBy);
             modelBuilder.Entity<Task>().HasRequired(t => t.User).WithMany(x => x.Tasks);
-            modelBuilder.Entity<Subject>().HasOptional(t => t.User).WithMany(x => x.Subjects);
-            //modelBuilder.Entity<User>().HasOptional(t => t.CreatedBy).WithOptionalDependent();
+            modelBuilder.Entity<Subject>().HasRequired(t => t.User).WithMany(x => x.Subjects);
             
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
@@ -60,6 +53,8 @@ namespace eos.Models.Data
         public void Seed()
         {
             User.Seed(this);
+            Subject.Seed(this);
+            Task.Seed(this);
         }
 
         public void Unseed()

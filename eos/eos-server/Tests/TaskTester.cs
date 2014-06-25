@@ -18,7 +18,9 @@ namespace eos.Tests
                     Name = "Test",
                     Comments = "Test",
                     Color = "Test",
-                    UserId = 1
+                    UserId = 1,
+                    Subject = manager.Context.Subjects.First(),
+                    User = manager.Context.Users.First()
                 };
 
                 task.Id = manager.Save(task);

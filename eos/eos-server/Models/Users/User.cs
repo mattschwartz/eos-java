@@ -13,6 +13,12 @@ namespace eos.Models.Users
     [Table("eos_users")]
     public class User : BaseModel
     {
+        public User() 
+            : base()
+        {
+
+        }
+
         [Column("first_name")]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
@@ -40,8 +46,7 @@ namespace eos.Models.Users
                     FirstName = "First Name",
                     LastName = "Last Name",
                     Email = "Email",
-                    Password = "password",
-                    //CreatedOn = DateTime.Now
+                    Password = "password"
                 }
             };
 
