@@ -9,5 +9,6 @@ namespace eos.Models.Users
 {
     public class UserManager : DataManager<User>
     {
+
     }
 }
