@@ -212,10 +212,10 @@
     <Compile Include="Models\Users\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Tests\SubjectTester.cs" />
-    <Compile Include="Tests\TaskTester.cs" />
+    <Compile Include="Tests\Data\SubjectTester.cs" />
+    <Compile Include="Tests\Data\TaskTester.cs" />
     <Compile Include="Tests\TestBase.cs" />
-    <Compile Include="Tests\UserTester.cs" />
+    <Compile Include="Tests\Data\UserTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\eos.mdf" />
