@@ -19,8 +19,6 @@ namespace eos.Models.Tasks
 
         }
 
-        
-
         [Column("color")]
         [Display(Name = "Color")]
         public String Color { get; set; }

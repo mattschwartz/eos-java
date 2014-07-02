@@ -19,10 +19,17 @@ namespace eos.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        #if RELEASE
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("Release", throwIfV1Schema: false)
         {
         }
+#else
+        public ApplicationDbContext()
+            : base("Debug", throwIfV1Schema: false)
+        {
+        }
+#endif
 
         public static ApplicationDbContext Create()
         {
