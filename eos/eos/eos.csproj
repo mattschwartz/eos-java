@@ -227,6 +227,8 @@
     </Compile>
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Tests\Data\CalendarEventTester.cs" />
+    <Compile Include="Tests\Data\DocumentTester.cs" />
     <Compile Include="Tests\Data\EmailServiceTester.cs" />
     <Compile Include="Tests\Data\SubjectTester.cs" />
     <Compile Include="Tests\Data\TaskTester.cs" />

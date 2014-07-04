@@ -68,7 +68,7 @@ namespace eos.Models.Events
                 }
             };
 
-            context.Events.AddRange(events);
+            context.CalendarEvents.AddRange(events);
             context.SaveChanges();
         }
     }

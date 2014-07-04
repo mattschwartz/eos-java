@@ -11,7 +11,7 @@ namespace eos.Tests.Data
         public void SendEmail()
         {
             try {
-                Services.EmailService.SendMail("project.eos.devteam.com", "subject", "body");
+                Services.EmailService.SendMail("project.eos.devteam@gmail.com", "subject", "body");
             } catch (Exception ex) {
                 Assert.Fail(ex.ToString());
             }

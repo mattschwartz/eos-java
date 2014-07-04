@@ -32,7 +32,7 @@ namespace eos.Models.Data
         {
             modelBuilder.Entity<Task>().HasRequired(t => t.User).WithMany(x => x.Tasks);
             modelBuilder.Entity<Subject>().HasRequired(t => t.User).WithMany(x => x.Subjects);
-            modelBuilder.Entity<Document>().HasOptional(t => t.Event).WithMany(x => x.Documents);
+            modelBuilder.Entity<Document>().HasOptional(t => t.CalendarEvent).WithMany(x => x.Documents);
             modelBuilder.Entity<Document>().HasOptional(t => t.Subject).WithMany(x => x.Documents);
             modelBuilder.Entity<Document>().HasOptional(t => t.Task).WithMany(x => x.Documents);
             modelBuilder.Entity<Document>().HasRequired(t => t.User).WithMany(x => x.Documents);
@@ -93,7 +93,7 @@ namespace eos.Models.Data
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Document> Documents { get; set; }
-        public DbSet<CalendarEvent> Events { get; set; }
+        public DbSet<CalendarEvent> CalendarEvents { get; set; }
 
         #endregion
     }

@@ -48,11 +48,11 @@ namespace eos.Models.Documents
         public Int32? TaskId { get; set; }
         public Task Task { get; set; }
 
-        [ForeignKey("Event")]
+        [ForeignKey("CalendarEvent")]
         [Column("event_id")]
-        [Display(Name = "Event")]
-        public Int32? EventId { get; set; }
-        public CalendarEvent Event { get; set; }
+        [Display(Name = "CalendarEvent")]
+        public Int32? CalendarEventId { get; set; }
+        public CalendarEvent CalendarEvent { get; set; }
 
         public static void Seed(DataContext context)
         {
