@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
-using Aztec.Data.Data;
 using eos.Models.Data;
 using NUnit.Framework;
 

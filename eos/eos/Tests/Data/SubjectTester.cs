@@ -1,10 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using eos.Models.Tasks;
-using eos.Models.Users;
 using eos.Models.Subjects;
 
 namespace eos.Tests.Data
@@ -16,8 +12,9 @@ namespace eos.Tests.Data
         public void SaveAndDeleteSubject()
         {
             using (var manager = new SubjectManager()) {
-                Subject subject = new Subject {
-                    User = manager.Context.Users.First(),
+                var subject = new Subject
+                {
+                    User = manager.Context.Users.Find(1),
                     XPos = 1,
                     YPos = 1,
                     Color = "test",
@@ -38,7 +35,7 @@ namespace eos.Tests.Data
                     Assert.Fail("The subject was not found in the database.");
                 }
 
-                if (subject.UserId != 1
+                if (subject.User != manager.Context.Users.Find(1)
                     || subject.XPos != 1
                     || subject.YPos != 1
                     || subject.Color != "test"

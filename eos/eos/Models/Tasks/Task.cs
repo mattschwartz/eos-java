@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
 using eos.Models.Data;
+using eos.Models.Documents;
+using eos.Models.Events;
 using eos.Models.Subjects;
 using eos.Models.Users;
 
@@ -16,7 +17,6 @@ namespace eos.Models.Tasks
         public Task() 
             : base()
         {
-
         }
 
         [Column("color")]
@@ -44,6 +44,12 @@ namespace eos.Models.Tasks
 
         [Display(Name = "Subject")]
         public virtual Subject Subject { get; set; }
+
+        [Display(Name = "Documents")]
+        public virtual List<Document> Documents { get; set; }
+
+        [Display(Name = "Calendar Events")]
+        public virtual List<CalendarEvent> CalendarEvents { get; set; }
 
         public static void Seed(DataContext context)
         {

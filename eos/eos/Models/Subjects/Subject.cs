@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
 using eos.Models.Data;
+using eos.Models.Documents;
+using eos.Models.Events;
 using eos.Models.Tasks;
 using eos.Models.Users;
 
@@ -16,7 +17,6 @@ namespace eos.Models.Subjects
         public Subject() 
             : base()
         {
-
         }
 
         [Column("color")]
@@ -52,9 +52,15 @@ namespace eos.Models.Subjects
         [Display(Name = "Tasks")]
         public virtual List<Task> Tasks { get; set; }
 
+        [Display(Name = "Documents")]
+        public virtual List<Document> Documents { get; set; }
+
+        [Display(Name = "Calendar Events")]
+        public virtual List<CalendarEvent> CalendarEvents { get; set; }
+
         public static void Seed(DataContext context)
         {
-            var Subjects = new List<Subject>
+            var subjects = new List<Subject>
             {
                 new Subject {
                     User = context.Users.First(),
@@ -77,7 +83,7 @@ namespace eos.Models.Subjects
                 }
             };
 
-            context.Subjects.AddRange(Subjects);
+            context.Subjects.AddRange(subjects);
             context.SaveChanges();
         }
     }

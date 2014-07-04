@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 
-namespace eos.Models
+namespace eos.Models.Data
 {
     public class DataUtility
     {

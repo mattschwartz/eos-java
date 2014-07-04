@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.Web;
-using eos.Models.Data;
 
-namespace Aztec.Data.Data
+namespace eos.Models.Data
 {
     public class DataManager<T> : IDisposable where T : BaseModel
     {

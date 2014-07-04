@@ -1,9 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using eos.Models.Tasks;
 using eos.Models.Users;
 
 namespace eos.Tests.Data
@@ -15,7 +10,7 @@ namespace eos.Tests.Data
         public void SaveAndDeleteUser()
         {
             using (var manager = new UserManager()) {
-                User user = new User {
+                var user = new User {
                     Email = "test",
                     FirstName = "test",
                     LastName = "test",

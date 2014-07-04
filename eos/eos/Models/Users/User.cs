@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 using eos.Models.Data;
+using eos.Models.Documents;
+using eos.Models.Events;
 using eos.Models.Subjects;
 using eos.Models.Tasks;
+using NUnit.Core;
 
 namespace eos.Models.Users
 {
@@ -16,7 +17,6 @@ namespace eos.Models.Users
         public User() 
             : base()
         {
-
         }
 
         [Column("first_name")]
@@ -26,6 +26,10 @@ namespace eos.Models.Users
         [Column("last_name")]
         [Display(Name = "Last Name")]
         public String LastName { get; set; }
+
+        [Column("username")]
+        [Display(Name = "Username")]
+        public String Username { get; set; }
 
         [Column("email")]
         [Display(Name = "Email")]
@@ -38,6 +42,11 @@ namespace eos.Models.Users
         public List<Subject> Subjects { get; set; }
         public List<Task> Tasks { get; set; }
 
+        [Display(Name = "Calendar Events")]
+        public virtual List<CalendarEvent> CalendarEvents { get; set; }
+
+        public virtual List<Document> Documents { get; set; }
+
         public static void Seed(DataContext context)
         {
             var users = new List<User>
@@ -46,7 +55,8 @@ namespace eos.Models.Users
                     FirstName = "First Name",
                     LastName = "Last Name",
                     Email = "Email",
-                    Password = "password"
+                    Password = "Password",
+                    Username = "Username"
                 }
             };
 

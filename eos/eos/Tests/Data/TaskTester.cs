@@ -1,8 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using eos.Models.Tasks;
 
 namespace eos.Tests.Data
@@ -14,12 +10,13 @@ namespace eos.Tests.Data
         public void SaveAndDeleteTask()
         {
             using (var manager = new TaskManager()) {
-                Task task = new Task {
+                var task = new Task
+                {
                     Name = "Test",
                     Comments = "Test",
                     Color = "Test",
-                    Subject = manager.Context.Subjects.First(),
-                    User = manager.Context.Users.First()
+                    Subject = manager.Context.Subjects.Find(1),
+                    User = manager.Context.Users.Find(1)
                 };
 
                 task.Id = manager.Save(task);
@@ -37,8 +34,8 @@ namespace eos.Tests.Data
                 if (task.Name != "Test" 
                     || task.Comments != "Test" 
                     || task.Color != "Test"
-                    || task.UserId != 1
-                    || task.SubjectId != 1) {
+                    || task.User != manager.Context.Users.Find(1)
+                    || task.Subject != manager.Context.Subjects.Find(1)) {
                         Assert.Fail("The task retrieved was not the task that was saved.");
                 }
 
