@@ -12,7 +12,7 @@ namespace eos.Models.Data
 
         public T GetById(int id)
         {
-            return this.Context.Set<T>().Find(id);
+            return Context.Set<T>().Find(id);
         }
 
         public void Delete(int id)
@@ -23,8 +23,8 @@ namespace eos.Models.Data
                 return;
             }
 
-            this.Context.Set<T>().Remove(entity);
-            this.Context.SaveChanges();
+            Context.Set<T>().Remove(entity);
+            Context.SaveChanges();
         }
 
         public int Save(T data)
@@ -32,25 +32,25 @@ namespace eos.Models.Data
             var entity = GetById(data.Id);
 
             if (entity == null) {
-                this.Context.Set<T>().Add(data);
+                Context.Set<T>().Add(data);
                 entity = data;
             } else {
-                this.Context.Entry(entity).CurrentValues.SetValues(data);
+                Context.Entry(entity).CurrentValues.SetValues(data);
             }
 
-            this.Context.SaveChanges();
+            Context.SaveChanges();
 
             return entity.Id;
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await this.Context.Set<T>().FindAsync(id);
+            return await Context.Set<T>().FindAsync(id);
         }
 
         public List<T> GetAll()
         {
-            var result = this.Context.Set<T>();
+            var result = Context.Set<T>();
 
             if (result == null) {
                 return null;
@@ -61,17 +61,17 @@ namespace eos.Models.Data
 
         public T Find(Expression<Func<T, bool>> match)
         {
-            return this.Context.Set<T>().SingleOrDefault(match);
+            return Context.Set<T>().SingleOrDefault(match);
         }
 
         public ICollection<T> FindAll(Expression<Func<T, bool>> match)
         {
-            return this.Context.Set<T>().Where(match).ToList();
+            return Context.Set<T>().Where(match).ToList();
         }
 
         public int Count()
         {
-            return this.Context.Set<T>().Count();
+            return Context.Set<T>().Count();
         }
 
         public void Dispose()
@@ -85,9 +85,9 @@ namespace eos.Models.Data
         {
             if (disposing) {
                 // free managed resources
-                if (this.Context != null) {
-                    this.Context.Dispose();
-                    this.Context = null;
+                if (Context != null) {
+                    Context.Dispose();
+                    Context = null;
                 }
             }
         }

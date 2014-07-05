@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using eos.Models.CalendarEvents;
 using eos.Models.Data;
 using eos.Models.Documents;
-using eos.Models.Events;
 using eos.Models.Subjects;
 using eos.Models.Users;
 
@@ -14,11 +14,6 @@ namespace eos.Models.Tasks
     [Table("eos_tasks")]
     public class Task : BaseModel
     {
-        public Task() 
-            : base()
-        {
-        }
-
         [Column("color")]
         [Display(Name = "Color")]
         public String Color { get; set; }

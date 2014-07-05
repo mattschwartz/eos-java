@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using eos.Models.Events;
-using eos.Models.Users;
+using eos.Models.CalendarEvents;
 using NUnit.Framework;
 
 namespace eos.Tests.Data
@@ -15,7 +11,6 @@ namespace eos.Tests.Data
         public void SaveAndDeleteCalendarEvent()
         {
             using (var manager = new CalendarEventManager()) {
-                var bytes = new byte[] { 1, 2, 3 };
                 var calendarEvent = new CalendarEvent
                 {
                     StartDate = DateTime.Today,

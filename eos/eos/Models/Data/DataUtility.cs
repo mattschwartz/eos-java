@@ -12,10 +12,8 @@ namespace eos.Models.Data
             var random = new Random((int)DateTime.Now.Ticks);
             var builder = new StringBuilder();
 
-            char ch;
-
-            for (int i = 0; i < 64; i++) {
-                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+            for (var i = 0; i < 64; i++) {
+                var ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
 
                 builder.Append(ch);
             }

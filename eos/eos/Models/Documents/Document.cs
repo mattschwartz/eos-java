@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using eos.Models.CalendarEvents;
 using eos.Models.Data;
-using eos.Models.Events;
 using eos.Models.Subjects;
 using eos.Models.Tasks;
 using eos.Models.Users;
@@ -13,11 +13,6 @@ namespace eos.Models.Documents
     [Table("eos_documents")]
     public class Document : BaseModel
     {
-        public Document() :
-            base()
-        {
-        }
-
         [Column("file_name")]
         [Display(Name = "File Name")]
         public String FileName { get; set; }

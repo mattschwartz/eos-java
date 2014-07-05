@@ -8,7 +8,7 @@ namespace eos.Models.Data
     {
         public BaseModel()
         {
-            this.CreatedOn = DateTime.Now;
+            CreatedOn = DateTime.Now;
         }
 
         [Key]

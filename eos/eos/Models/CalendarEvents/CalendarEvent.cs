@@ -8,16 +8,11 @@ using eos.Models.Subjects;
 using eos.Models.Tasks;
 using eos.Models.Users;
 
-namespace eos.Models.Events
+namespace eos.Models.CalendarEvents
 {
     [Table("eos_events")]
     public class CalendarEvent : BaseModel
     {
-        public CalendarEvent()
-            : base()
-        {
-        }
-
         [Column("title")]
         [Display(Name = "Title")]
         public String Title { get; set; }

@@ -1,5 +1,4 @@
-﻿using System;
-using eos.Models.Documents;
+﻿using eos.Models.Documents;
 using NUnit.Framework;
 
 namespace eos.Tests.Data

@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using eos.Models.CalendarEvents;
 using eos.Models.Data;
 using eos.Models.Documents;
-using eos.Models.Events;
 using eos.Models.Subjects;
 using eos.Models.Tasks;
-using NUnit.Core;
 
 namespace eos.Models.Users
 {
     [Table("eos_users")]
     public class User : BaseModel
     {
-        public User() 
-            : base()
-        {
-        }
-
         [Column("first_name")]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }

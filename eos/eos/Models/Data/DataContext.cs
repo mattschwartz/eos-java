@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using eos.Models.CalendarEvents;
 using eos.Models.Documents;
 using eos.Properties;
 using Ionic.Zip;
@@ -10,7 +11,6 @@ using System.Reflection;
 using eos.Models.Subjects;
 using eos.Models.Users;
 using eos.Models.Tasks;
-using eos.Models.Events;
 
 namespace eos.Models.Data
 {
