@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.IO;
 using eos.Models.CalendarEvents;
 using eos.Models.Data;
-using eos.Models.Documents;
 using eos.Models.Subjects;
 using eos.Models.Tasks;
 using eos.Models.Users;
@@ -22,10 +21,10 @@ namespace eos.Tests
 
             AppDomain.CurrentDomain.SetData("DataDirectory", appDataDirectory);
 
-            var zipPath = Path.Combine(appDataDirectory, "eos-data.zip");
-            var dataPath = Path.Combine(appDataDirectory, "eos.mdf");
+            var zipPath = Path.Combine(appDataDirectory, "eos-test.zip");
+            var dataPathDb = Path.Combine(appDataDirectory, "eos-test.mdf");
 
-            if (!File.Exists(dataPath)) {
+            if (!File.Exists(dataPathDb)) {
                 using (var zip = ZipFile.Read(zipPath)) {
                     zip.ExtractAll(appDataDirectory, ExtractExistingFileAction.DoNotOverwrite);
                 }
