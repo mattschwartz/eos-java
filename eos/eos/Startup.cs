@@ -10,7 +10,6 @@ namespace eos
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            DataContext.Setup();
         }
     }
 }

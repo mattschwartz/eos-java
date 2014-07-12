@@ -199,6 +199,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Data\IDataModel.cs" />
     <Compile Include="Models\Documents\Document.cs" />
     <Compile Include="Models\Documents\DocumentManager.cs" />
     <Compile Include="Models\Data\BaseModel.cs" />

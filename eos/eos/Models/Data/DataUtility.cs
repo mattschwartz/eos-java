@@ -7,6 +7,11 @@ namespace eos.Models.Data
 {
     public class DataUtility
     {
+        public static String GetId()
+        {
+            return Guid.NewGuid().ToString();
+        }
+
         public static String GetSalt()
         {
             var random = new Random((int)DateTime.Now.Ticks);
@@ -14,7 +19,6 @@ namespace eos.Models.Data
 
             for (var i = 0; i < 64; i++) {
                 var ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
-
                 builder.Append(ch);
             }
 
@@ -33,7 +37,7 @@ namespace eos.Models.Data
 
             var algorithm = HashAlgorithm.Create("SHA1");
 
-            byte[] inArray = algorithm.ComputeHash(dst);
+            var inArray = algorithm.ComputeHash(dst);
 
             return Convert.ToBase64String(inArray);
         }

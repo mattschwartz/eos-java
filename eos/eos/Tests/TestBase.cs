@@ -14,8 +14,6 @@ namespace eos.Tests
             var appDataDirectory = Path.Combine(baseDirectory.Replace("\\bin", ""), "App_Data");
 
             AppDomain.CurrentDomain.SetData("DataDirectory", appDataDirectory);
-
-            DataContext.Setup();
         }
 
         [TestFixtureTearDown]
