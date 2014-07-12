@@ -71,6 +71,10 @@ namespace eos.Models.Data
             modelBuilder.Entity<IdentityUserClaim>().Property(t => t.ClaimType).HasColumnName("claim_type");
             modelBuilder.Entity<IdentityUserClaim>().Property(t => t.ClaimValue).HasColumnName("claim_value");
 
+            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+
             #endregion
 
             modelBuilder.Entity<Task>().HasRequired(t => t.User).WithMany(x => x.Tasks);
@@ -86,15 +90,6 @@ namespace eos.Models.Data
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
-
-        //public void Seed()
-        //{
-        //    User.Seed(this);
-        //    Subject.Seed(this);
-        //    Task.Seed(this);
-        //    Document.Seed(this);
-        //    CalendarEvent.Seed(this);
-        //}
 
         #region DbSet
 

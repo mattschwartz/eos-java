@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 using System;
 using eos.Models.Subjects;
 
@@ -13,7 +14,7 @@ namespace eos.Tests.Data
             using (var manager = new SubjectManager()) {
                 var subject = new Subject
                 {
-                    User = manager.Context.Users.Find(1),
+                    User = manager.Context.Users.First(),
                     XPos = 1,
                     YPos = 1,
                     Color = "test",
@@ -23,18 +24,13 @@ namespace eos.Tests.Data
                 };
 
                 subject.Id = manager.Save(subject);
-
-                if (subject.Id <= 0) {
-                    Assert.Fail("Subject failed to save and returned with an id of " + subject.Id);
-                }
-
                 subject = manager.GetById(subject.Id);
 
                 if (subject == null) {
                     Assert.Fail("The subject was not found in the database.");
                 }
 
-                if (subject.User != manager.Context.Users.Find(1)
+                if (subject.User != manager.Context.Users.First()
                     || subject.XPos != 1
                     || subject.YPos != 1
                     || subject.Color != "test"

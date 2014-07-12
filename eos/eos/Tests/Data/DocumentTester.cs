@@ -1,4 +1,5 @@
-﻿using eos.Models.Documents;
+﻿using System.Linq;
+using eos.Models.Documents;
 using NUnit.Framework;
 
 namespace eos.Tests.Data
@@ -15,32 +16,27 @@ namespace eos.Tests.Data
                 {
                     FileName = "test",
                     Extension = ".txt",
-                    User = manager.Context.Users.Find(1),
+                    User = manager.Context.Users.First(),
                     Data = bytes,
-                    Subject = manager.Context.Subjects.Find(1),
-                    Task = manager.Context.Tasks.Find(1),
-                    CalendarEvent = manager.Context.CalendarEvents.Find(1)
+                    Subject = manager.Context.Subjects.First(),
+                    Task = manager.Context.Tasks.First(),
+                    CalendarEvent = manager.Context.CalendarEvents.First()
                 };
 
                 document.Id = manager.Save(document);
-
-                if (document.Id <= 0) {
-                    Assert.Fail("Document failed to save and returned with an id of " + document.Id);
-                }
-
                 document = manager.GetById(document.Id);
 
                 if (document == null) {
                     Assert.Fail("The document was not found in the database.");
                 }
 
-                if (document.User != manager.Context.Users.Find(1)
+                if (document.User != manager.Context.Users.First()
                     || document.FileName != "test"
                     || document.Extension != ".txt"
                     || document.Data != bytes
-                    || document.Subject != manager.Context.Subjects.Find(1)
-                    || document.Task != manager.Context.Tasks.Find(1)
-                    || document.CalendarEvent != manager.Context.CalendarEvents.Find(1)) {
+                    || document.Subject != manager.Context.Subjects.First()
+                    || document.Task != manager.Context.Tasks.First()
+                    || document.CalendarEvent != manager.Context.CalendarEvents.First()) {
                         Assert.Fail("The document retrieved was not the document that was saved.");
                 }
 

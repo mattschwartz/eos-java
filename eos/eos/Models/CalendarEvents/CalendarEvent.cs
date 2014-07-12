@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using eos.Models.Data;
 using eos.Models.Documents;
 using eos.Models.Subjects;
@@ -10,44 +11,40 @@ using eos.Models.Users;
 
 namespace eos.Models.CalendarEvents
 {
-    [Table("eos_events")]
+    [Table("eos_calendar_events")]
     public class CalendarEvent : BaseModel
     {
         [Column("title")]
-        [Display(Name = "Title")]
         public String Title { get; set; }
 
         [Column("description")]
-        [Display(Name = "Description")]
         public String Description { get; set; }
 
-        [Column("start_date", TypeName = "DateTime2")]
+        [Column("start_date")]
+        [DataType(DataType.DateTime)]
         [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
 
-        [Column("end_date", TypeName = "DateTime2")]
+        [Column("end_date")]
+        [DataType(DataType.DateTime)]
         [Display(Name = "End Date")]
         public DateTime EndDate { get; set; }
 
         [ForeignKey("User")]
         [Column("user_id")]
-        [Display(Name = "User")]
-        public Int32 UserId { get; set; }
+        public String UserId { get; set; }
         public User User { get; set; }
 
         [ForeignKey("Subject")]
         [Column("subject_id")]
-        [Display(Name = "Subject")]
-        public Int32? SubjectId { get; set; }
+        public String SubjectId { get; set; }
         public Subject Subject { get; set; }
 
         [ForeignKey("Task")]
         [Column("task_id")]
-        [Display(Name = "Task")]
-        public Int32? TaskId { get; set; }
+        public String TaskId { get; set; }
         public Task Task { get; set; }
 
-        [Display(Name = "Documents")]
         public virtual List<Document> Documents { get; set; }
 
         public static void Seed(DataContext context)
@@ -55,11 +52,13 @@ namespace eos.Models.CalendarEvents
             var events = new List<CalendarEvent>
             {
                 new CalendarEvent {
-                    Title = "",
-                    Description = "",
-                    EndDate = DateTime.Today.AddDays(1),
+                    User = context.Users.First(),
+                    Title = "test",
+                    Description = "test",
                     StartDate = DateTime.Today,
-                    UserId = 1
+                    EndDate = DateTime.Today,
+                    Subject = context.Subjects.First(),
+                    Task = context.Tasks.First()
                 }
             };
 

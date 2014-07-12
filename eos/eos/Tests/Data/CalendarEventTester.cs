@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using eos.Models.CalendarEvents;
 using NUnit.Framework;
 
@@ -17,30 +18,25 @@ namespace eos.Tests.Data
                     EndDate = DateTime.Today.AddDays(1),
                     Description = "test",
                     Title = "test",
-                    User = manager.Context.Users.Find(1),
-                    Subject = manager.Context.Subjects.Find(1),
-                    Task = manager.Context.Tasks.Find(1),
+                    User = manager.Context.Users.First(),
+                    Subject = manager.Context.Subjects.First(),
+                    Task = manager.Context.Tasks.First(),
                 };
 
                 calendarEvent.Id = manager.Save(calendarEvent);
-
-                if (calendarEvent.Id <= 0) {
-                    Assert.Fail("Calendar Event failed to save and returned with an id of " + calendarEvent.Id);
-                }
-
                 calendarEvent = manager.GetById(calendarEvent.Id);
 
                 if (calendarEvent == null) {
                     Assert.Fail("The calendar event was not found in the database.");
                 }
 
-                if (calendarEvent.User != manager.Context.Users.Find(1)
+                if (calendarEvent.User != manager.Context.Users.First()
                     || calendarEvent.StartDate != DateTime.Today
                     || calendarEvent.EndDate != DateTime.Today.AddDays(1)
                     || calendarEvent.Title != "test"
                     || calendarEvent.Description != "test"
-                    || calendarEvent.Subject != manager.Context.Subjects.Find(1)
-                    || calendarEvent.Task != manager.Context.Tasks.Find(1)) {
+                    || calendarEvent.Subject != manager.Context.Subjects.First()
+                    || calendarEvent.Task != manager.Context.Tasks.First()) {
                     Assert.Fail("The calendar event retrieved was not the calendar event that was saved.");
                 }
 

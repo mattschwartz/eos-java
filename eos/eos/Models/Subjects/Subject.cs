@@ -15,25 +15,20 @@ namespace eos.Models.Subjects
     public class Subject : BaseModel
     {
         [Column("color")]
-        [Display(Name = "Color")]
         public String Color { get; set; }
 
         [Column("details")]
-        [Display(Name = "Details")]
         public String Details { get; set; }
 
         [Column("radius")]
-        [Display(Name = "Radius")]
         public Decimal Radius { get; set; }
         
         [Column("title")]
-        [Display(Name = "Title")]
         public String Title { get; set; }
 
         [ForeignKey("User")]
         [Column("user_id")]
-        [Display(Name = "User")]
-        public Int32? UserId { get; set; }
+        public String UserId { get; set; }
         public virtual User User { get; set; }
 
         [Column("xpos")]
@@ -44,13 +39,8 @@ namespace eos.Models.Subjects
         [Display(Name = "Y Pos")]
         public Int32 YPos { get; set; }
 
-        [Display(Name = "Tasks")]
         public virtual List<Task> Tasks { get; set; }
-
-        [Display(Name = "Documents")]
         public virtual List<Document> Documents { get; set; }
-
-        [Display(Name = "Calendar Events")]
         public virtual List<CalendarEvent> CalendarEvents { get; set; }
 
         public static void Seed(DataContext context)

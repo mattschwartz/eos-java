@@ -14,15 +14,9 @@ namespace eos.Tests.Data
                     Email = "test",
                     FirstName = "test",
                     LastName = "test",
-                    Password = "test"
                 };
 
                 user.Id = manager.Save(user);
-
-                if (user.Id <= 0) {
-                    Assert.Fail("User failed to save and returned with an id of " + user.Id);
-                }
-
                 user = manager.GetById(user.Id);
 
                 if (user == null) {
@@ -31,8 +25,7 @@ namespace eos.Tests.Data
 
                 if (user.Email != "test"
                     || user.FirstName != "test"
-                    || user.LastName != "test"
-                    || user.Password != "test") {
+                    || user.LastName != "test") {
                         Assert.Fail("The user retrieved was not the user that was saved.");
                 }
 

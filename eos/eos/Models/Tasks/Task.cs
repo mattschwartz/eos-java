@@ -15,35 +15,25 @@ namespace eos.Models.Tasks
     public class Task : BaseModel
     {
         [Column("color")]
-        [Display(Name = "Color")]
         public String Color { get; set; }
 
         [Column("comments")]
-        [Display(Name = "Comments")]
         public String Comments { get; set; }
 
         [ForeignKey("Subject")]
         [Column("subject_id")]
-        [Display(Name = "Subject")]
-        public Int32 SubjectId { get; set; }
+        public String SubjectId { get; set; }
 
         [Column("title")]
-        [Display(Name = "Title")]
         public String Name { get; set; }
 
         [ForeignKey("User")]
         [Column("user_id")]
-        [Display(Name = "User")]
-        public Int32? UserId { get; set; }
+        public String UserId { get; set; }
         public virtual User User { get; set; }
-
-        [Display(Name = "Subject")]
+        
         public virtual Subject Subject { get; set; }
-
-        [Display(Name = "Documents")]
         public virtual List<Document> Documents { get; set; }
-
-        [Display(Name = "Calendar Events")]
         public virtual List<CalendarEvent> CalendarEvents { get; set; }
 
         public static void Seed(DataContext context)
