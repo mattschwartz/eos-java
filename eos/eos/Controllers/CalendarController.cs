@@ -2,6 +2,7 @@
 
 namespace eos.Controllers
 {
+    [Authorize]
     public class CalendarController : Controller
     {
         // GET: Calendar

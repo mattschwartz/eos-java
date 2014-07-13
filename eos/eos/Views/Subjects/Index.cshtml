@@ -4,52 +4,57 @@
     ViewBag.Title = "Subjects";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    table, th, td {
-        border: 1px solid black;
-        padding: 10px;
-    }
-</style>
-<h2>@ViewBag.Title</h2>
-<div align="right">
-    <p>
-        @using (Html.BeginForm("Create", "Subject", new { ViewBag.ReturnUrl }, FormMethod.Get, new { @class = "form-horizontal", role = "create" })) {
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Add Subject" class="btn btn-default" />
-                </div>
-            </div>
-        }
-    </p>
-</div>
-<div class="row">
-    @Html.AntiForgeryToken()
-    @if (Model == null || !Model.Any()) {
-        <div>
-            <div>
-                There are no Subjects yet.<br /><br />Would you like to <a href="/Subject/Create">add one</a>?
-            </div>
-        </div>
-    } else {
-        <table id="datatable">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Details</th>
-                    <th>Color</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null) {
-                    foreach (var item in Model) {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Details)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Color)</td>
-                        </tr>
-                    }
+<html>
+    <head>
+        <title>@ViewBag.Title</title>
+    </head>
+    <body>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+        </style>
+        <h2>@ViewBag.Title</h2>
+        <div align="right">
+            <p>
+                @using (Html.BeginForm("Create", "Subjects", new { ViewBag.ReturnUrl }, FormMethod.Get, new { @class = "form-horizontal", role = "create" })) {
+                    <div class="form-group">
+                        <input type="submit" value="Add Subject" class="btn btn-default" />
+                    </div>
                 }
-            </tbody>
-        </table>
-    }
-</div>
+            </p>
+        </div>
+        <div class="row">
+            @Html.AntiForgeryToken()
+            @if (Model == null || !Model.Any()) {
+                <div>
+                    <div>
+                        There are no Subjects yet.<br /><br />Would you like to <a href="/Subjects/Create">add one</a>?
+                    </div>
+                </div>
+            } else {
+                <table id="datatable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Details</th>
+                            <th>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null) {
+                            foreach (var item in Model) {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Details)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Color)</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </body>
+</html>

@@ -1,17 +1,33 @@
 ﻿@{
-    ViewBag.Title = "Click To View Subjects";
+    ViewBag.Title = "Verse";
 }
+<style>
+    table, th, td {
+        padding: 10px
+    }
+</style>
 
 <div>
     <h2>@ViewBag.Title</h2>
     <p>
-        @using (Html.BeginForm("Index", "Subject", new {ViewBag.ReturnUrl}, FormMethod.Get, new {@class = "form-horizontal", role = "create"})) {
-            @Html.AntiForgeryToken()
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Add Subject" class="btn btn-default" />
-                </div>
-            </div>
-        }
+        <table>
+            <tr>
+                <td>
+                    @using (Html.BeginForm("Index", "Calendar", new { ViewBag.ReturnUrl }, FormMethod.Get, new { @class = "form-horizontal", role = "create" })) {
+                        <input type="submit" value="Calendar" class="btn btn-default" />
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("Index", "Tasks", new { ViewBag.ReturnUrl }, FormMethod.Get, new { @class = "form-horizontal", role = "create" })) {
+                        <input type="submit" value="Tasks" class="btn btn-default" />
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("Index", "Subjects", new { ViewBag.ReturnUrl }, FormMethod.Get, new { @class = "form-horizontal", role = "create" })) {
+                        <input type="submit" value="Subjects" class="btn btn-default" />
+                    }
+                </td>
+            </tr>
+        </table>
     </p>
 </div>

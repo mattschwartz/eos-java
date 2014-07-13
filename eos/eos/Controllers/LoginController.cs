@@ -74,7 +74,7 @@ namespace eos.Controllers
                 if (user != null) {
                     await UserManager.Instance.Login(user, true);
 
-                    return View("../Home/Index");
+                    return View("../Verse/Index");
                 }
 
                 ModelState.AddModelError("", "Invalid email or password.");

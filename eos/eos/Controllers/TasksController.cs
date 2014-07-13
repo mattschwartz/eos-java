@@ -2,6 +2,7 @@
 
 namespace eos.Controllers
 {
+    [Authorize]
     public class TasksController : Controller
     {
         // GET: Tasks
