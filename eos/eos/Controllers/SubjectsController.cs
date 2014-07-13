@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using eos.Models.Subjects;
-using eos.Views.Subject.ViewModels;
+using eos.Views.Subjects.ViewModels;
 using Microsoft.AspNet.Identity;
 
 namespace eos.Controllers

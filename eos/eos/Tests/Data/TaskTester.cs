@@ -13,8 +13,8 @@ namespace eos.Tests.Data
             using (var manager = new TaskManager()) {
                 var task = new Task
                 {
-                    Name = "Test",
-                    Comments = "Test",
+                    Title = "Test",
+                    Comment = "Test",
                     Color = "Test",
                     Subject = manager.Context.Subjects.First(),
                     User = manager.Context.Users.First()
@@ -27,8 +27,8 @@ namespace eos.Tests.Data
                     Assert.Fail("The task was not found in the database.");
                 }
 
-                if (task.Name != "Test" 
-                    || task.Comments != "Test" 
+                if (task.Title != "Test" 
+                    || task.Comment != "Test" 
                     || task.Color != "Test"
                     || task.User != manager.Context.Users.First()
                     || task.Subject != manager.Context.Subjects.First()) {

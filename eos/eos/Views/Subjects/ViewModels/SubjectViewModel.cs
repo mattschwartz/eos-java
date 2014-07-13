@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace eos.Views.Subject.ViewModels
+namespace eos.Views.Subjects.ViewModels
 {
     public class SubjectViewModel
     {

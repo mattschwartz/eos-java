@@ -1,3 +1,69 @@
-﻿@{
+﻿@model IEnumerable<eos.Views.Tasks.ViewModels.TaskViewModel>
+
+@{
     ViewBag.Title = "Tasks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <script type="text/javascript" src="~/Public/jscolor/jscolor.js"></script>
+</head>
+<body>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+    <h2>@ViewBag.Title</h2>
+    <div align="right">
+        <p>
+            @using (Html.BeginForm("Create", "Tasks", new { ViewBag.ReturnUrl }, FormMethod.Get, new { @class = "form-horizontal", role = "create" })) {
+                <div class="form-group">
+                    <input type="submit" value="Add Task" class="btn btn-default" />
+                </div>
+            }
+        </p>
+    </div>
+    <div class="row">
+        @Html.AntiForgeryToken()
+        @if (Model == null || !Model.Any()) {
+            <div>
+                <div>
+                    There are no Tasks yet.<br /><br />Would you like to <a href="/Tasks/Create">add one</a>?
+                </div>
+            </div>
+        } else {
+            <table id="datatable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Comments</th>
+                        <th>Color</th>
+                        <th>Subject Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th># of Docs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null) {
+                        foreach (var item in Model) {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Comment)</td>
+                                <td>@Html.TextBoxFor(modelItem => item.Color, new { @class = "color" })</td>
+                                <td>@Html.DisplayFor(modelItem => item.Subject.Title)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CalendarEvent.StartDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CalendarEvent.EndDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Documents.Count)</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</body>
+</html>
