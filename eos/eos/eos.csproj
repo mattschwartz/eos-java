@@ -195,6 +195,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,8 +214,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Subjects\Subject.cs" />
     <Compile Include="Models\Subjects\SubjectManager.cs" />
-    <Compile Include="Models\Tasks\Task.cs" />
-    <Compile Include="Models\Tasks\TaskManager.cs" />
+    <Compile Include="Models\Subjects\Tasks\Task.cs" />
+    <Compile Include="Models\Subjects\Tasks\TaskManager.cs" />
+    <Compile Include="Models\Users\ChallengeResult.cs" />
     <Compile Include="Models\Users\User.cs" />
     <Compile Include="Models\Users\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,10 +241,6 @@
     <Compile Include="Tests\Data\UserTester.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\eos.mdf" />
-    <Content Include="App_Data\eos_log.ldf">
-      <DependentUpon>eos.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -260,7 +258,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Public\css\signin.css" />
+    <Content Include="Public\css\style.css" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Public\img\eos-logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -308,6 +309,9 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
