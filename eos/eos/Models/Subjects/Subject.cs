@@ -3,17 +3,32 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Web;
 using eos.Models.CalendarEvents;
 using eos.Models.Data;
 using eos.Models.Documents;
 using eos.Models.Tasks;
 using eos.Models.Users;
+using Microsoft.AspNet.Identity;
 
 namespace eos.Models.Subjects
 {
     [Table("eos_subjects")]
     public class Subject : BaseModel
     {
+        public Subject()
+        {
+            CreatedOn = DateTime.Now;
+            UpdatedOn = DateTime.Now;
+
+            if (HttpContext.Current != null && HttpContext.Current.User != null &&
+                HttpContext.Current.User.Identity != null &&
+                !String.IsNullOrEmpty(HttpContext.Current.User.Identity.GetUserId())) {
+                CreatedBy = HttpContext.Current.User.Identity.GetUserId();
+                UserId = HttpContext.Current.User.Identity.GetUserId();
+            }
+        }
+
         [Column("color")]
         public String Color { get; set; }
 

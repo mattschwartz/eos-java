@@ -1,1 +1,6 @@
-﻿
+﻿table.dataTable thead .sorting { background: none; }
+table.dataTable thead .sorting_asc { background: none; }
+table.dataTable thead .sorting_desc { background: none; }
+div.dataTables_length select { margin-right: 10px; }
+table.dataTable thead > tr > th { padding-left: 8px !important; }
+.img-column { max-width: 60px; }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using eos.Models;
+using eos.Models.Subjects;
 using eos.Models.Users;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -50,17 +51,10 @@ namespace eos.Controllers
 
         #region GET: /Login
 
-        //// GET: /Login
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
         // GET: /Login
         [AllowAnonymous]
-        public ActionResult Index(string returnUrl = null)
+        public ActionResult Index()
         {
-            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -72,15 +66,15 @@ namespace eos.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid) {
                 var user = await UserManager.Instance.FindAsync(model.Email, model.Password);
 
                 if (user != null) {
-                    await UserManager.Instance.Login(user);
+                    await UserManager.Instance.Login(user, true);
 
-                    return RedirectToLocal(returnUrl);
+                    return View("../Home/Index");
                 }
 
                 ModelState.AddModelError("", "Invalid email or password.");
