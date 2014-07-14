@@ -27,6 +27,7 @@ namespace eos.Models.Users
                 HttpContext.Current.User.Identity != null &&
                 !String.IsNullOrEmpty(HttpContext.Current.User.Identity.GetUserId())) {
                 CreatedBy = HttpContext.Current.User.Identity.GetUserId();
+                ApiKey = DataUtility.GetId();
             }
         }
 
@@ -58,6 +59,11 @@ namespace eos.Models.Users
         public List<Task> Tasks { get; set; }
         public virtual List<CalendarEvent> CalendarEvents { get; set; }
         public virtual List<Document> Documents { get; set; }
+
+        [Required]
+        [Column("api_key")]
+        [StringLength(36)]
+        public String ApiKey { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using eos.Models.Data;
@@ -69,6 +70,11 @@ namespace eos.Models.Users
         public static User FindById(string id)
         {
             return Context.Users.Find(id);
+        }
+
+        public static User FindByApiKey(string key)
+        {
+            return Context.Users.FirstOrDefault(t => t.ApiKey == key);
         }
     }
 }
