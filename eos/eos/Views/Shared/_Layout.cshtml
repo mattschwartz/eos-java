@@ -5,8 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Eos</title>
         @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-
+        @Styles.Render("~/Public/fullcalendar/fullcalendar.css")
+        
+        @Scripts.Render("~/Public/fullcalendar/lib/jquery.min.js")
+        @Scripts.Render("~/Public/fullcalendar/lib/moment.min.js")
+        @Scripts.Render("~/Public/fullcalendar/fullcalendar.js")
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">

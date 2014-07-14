@@ -5,11 +5,7 @@
 <html>
     <head>
         <title>@ViewBag.Title</title>
-        @Styles.Render("~/Public/fullcalendar/fullcalendar.css")
-        @Scripts.Render("~/Scripts/jquery-2.1.1.min.js")
-        @Scripts.Render("~/Scripts/moment.min.js")
-        @Scripts.Render("~/Public/fullcalendar/fullcalendar.js")
-        @Scripts.Render("~/Scripts/jquery-2.1.1.min.js")
+        
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#calendar').fullCalendar({
@@ -19,8 +15,8 @@
         </script>
     </head>
     <body>
-        <section id='calendar'>
+        <div id='calendar'>
             
-        </section>
+        </div>
     </body>
 </html>
