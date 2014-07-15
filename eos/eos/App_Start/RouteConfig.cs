@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 using System.Web.Routing;
+using eos.Areas.Api.Security;
 
 namespace eos
 {
@@ -9,8 +11,14 @@ namespace eos
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Verse", action = "Index", id = UrlParameter.Optional }
-            );
+            routes.MapHttpRoute("Api", "Api/{controller}/{action}/{*value}", new { value = UrlParameter.Optional },
+                null, new ApiSecurityHandler(GlobalConfiguration.Configuration)
+                );
+
+            routes.MapRoute("Default", "{controller}/{action}/{*value}",
+                new { controller = "Verse", action = "Index", value = UrlParameter.Optional },
+                new[] { "eos.Controllers" }
+                );
         }
     }
 }

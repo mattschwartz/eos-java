@@ -111,17 +111,17 @@ namespace eos.Controllers
         {
             if (ModelState.IsValid) {
                 var user = new User { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.Instance.CreateAsync(user, model.Password);
+                var result = UserManager.Instance.Create(user, model.Password);
                 if (result.Succeeded) {
                     await UserManager.Instance.Login(user, false);
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    // For more information on how to enable Login confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your Login", "Please confirm your Login by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Verse");
                 }
                 foreach (var error in result.Errors) {
                     ModelState.AddModelError("", error);
@@ -138,18 +138,18 @@ namespace eos.Controllers
         #region External Login
 
         //
-        // POST: /Account/ExternalLogin
+        // POST: /Login/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Login", new { ReturnUrl = returnUrl }));
         }
 
         //
-        // GET: /Account/ExternalLoginCallback
+        // GET: /Login/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -168,7 +168,7 @@ namespace eos.Controllers
                 return RedirectToLocal(returnUrl);
             }
 
-            // If the user does not have an account, then prompt the user to create an account
+            // If the user does not have an Login, then prompt the user to create an Login
             ViewBag.ReturnUrl = returnUrl;
             ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
 
@@ -176,13 +176,13 @@ namespace eos.Controllers
         }
 
         //
-        // POST: /Account/LinkLogin
+        // POST: /Login/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
+            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Login"), User.Identity.GetUserId());
         }
 
         #endregion
@@ -190,7 +190,7 @@ namespace eos.Controllers
         #region Link Login Callback
 
         //
-        // GET: /Account/LinkLoginCallback
+        // GET: /Login/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await HttpContext.GetOwinContext()
@@ -198,24 +198,23 @@ namespace eos.Controllers
                             User.Identity.GetUserId());
 
             if (loginInfo == null) {
-                return RedirectToAction("Index", "Account", new { Message = ManageMessageId.Error });
+                return RedirectToAction("Index", "Login", new { Message = ManageMessageId.Error });
             }
 
             var result = await UserManager.Instance.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
 
-            return result.Succeeded ? RedirectToAction("Index", "Account") : RedirectToAction("Index", "Account", new { Message = ManageMessageId.Error });
+            return result.Succeeded ? RedirectToAction("Index", "Login") : RedirectToAction("Index", "Login", new { Message = ManageMessageId.Error });
         }
 
-
         //
-        // POST: /Account/ExternalLoginConfirmation
+        // POST: /Login/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
             if (User.Identity.IsAuthenticated) {
-                return RedirectToAction("Index", "Account");
+                return RedirectToAction("Index", "Login");
             }
 
             if (ModelState.IsValid) {
@@ -236,11 +235,11 @@ namespace eos.Controllers
                     if (result.Succeeded) {
                         await UserManager.Instance.Login(user, false);
 
-                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // For more information on how to enable Login confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        // SendEmail(user.Email, callbackUrl, "Confirm your account", "Please confirm your account by clicking this link");
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Login", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // SendEmail(user.Email, callbackUrl, "Confirm your Login", "Please confirm your Login by clicking this link");
 
                         return RedirectToLocal(returnUrl);
                     }
@@ -256,6 +255,14 @@ namespace eos.Controllers
             return View(model);
         }
 
+        //
+        // GET: /Login/ExternalLoginFailure
+        [AllowAnonymous]
+        public ActionResult ExternalLoginFailure()
+        {
+            return View();
+        }
+
         #endregion
 
         #region Helpers
@@ -266,7 +273,7 @@ namespace eos.Controllers
                 return Redirect(returnUrl);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Verse");
         }
 
         public enum ManageMessageId
@@ -282,7 +289,7 @@ namespace eos.Controllers
         #region Logoff
 
         //
-        // POST: /Account/LogOff
+        // POST: /Login/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()

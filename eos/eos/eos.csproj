@@ -201,6 +201,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\BaseApiController.cs" />
+    <Compile Include="Areas\Api\Controllers\SubjectsController.cs" />
+    <Compile Include="Areas\Api\Security\ApiSecurityHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -258,6 +260,15 @@
     <Compile Include="Views\Tasks\ViewModels\TaskViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\eos-test.mdf" />
+    <Content Include="App_Data\eos-test_log.ldf">
+      <DependentUpon>eos-test.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\eos.mdf" />
+    <Content Include="App_Data\eos_log-test.ldf" />
+    <Content Include="App_Data\eos_log.ldf">
+      <DependentUpon>eos.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -271,6 +282,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="App_Data\eos-data.zip" />
+    <Content Include="App_Data\eos-test.zip" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -409,6 +422,10 @@
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Tasks\Create.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Login\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Login\ExternalLoginFailure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -419,9 +436,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Api\Models\" />
-    <Folder Include="Areas\Api\Security\" />
     <Folder Include="Areas\Api\Tests\" />
     <Folder Include="Areas\Api\Views\BaseApi\" />
+    <Folder Include="Areas\Api\Views\Subjects\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

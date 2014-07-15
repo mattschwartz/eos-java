@@ -55,15 +55,14 @@ namespace eos.Models.Users
         public String CreatedBy { get; set; }
         public virtual User CreatedByUser { get; set; }
 
+        [Column("api_key")]
+        [StringLength(36)]
+        public String ApiKey { get; set; }
+
         public List<Subject> Subjects { get; set; }
         public List<Task> Tasks { get; set; }
         public virtual List<CalendarEvent> CalendarEvents { get; set; }
         public virtual List<Document> Documents { get; set; }
-
-        [Required]
-        [Column("api_key")]
-        [StringLength(36)]
-        public String ApiKey { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
