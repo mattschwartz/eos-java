@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using eos.Models;
-using eos.Models.Subjects;
 using eos.Models.Users;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -113,7 +110,7 @@ namespace eos.Controllers
                 var user = new User { UserName = model.Email, Email = model.Email };
                 var result = UserManager.Instance.Create(user, model.Password);
                 if (result.Succeeded) {
-                    await UserManager.Instance.Login(user, false);
+                    await UserManager.Instance.Login(user);
 
                     // For more information on how to enable Login confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -163,7 +160,7 @@ namespace eos.Controllers
             var user = await UserManager.Instance.FindAsync(loginInfo.Login);
 
             if (user != null) {
-                await UserManager.Instance.Login(user, false);
+                await UserManager.Instance.Login(user);
 
                 return RedirectToLocal(returnUrl);
             }
@@ -233,7 +230,7 @@ namespace eos.Controllers
                     result = await UserManager.Instance.AddLoginAsync(user.Id, info.Login);
 
                     if (result.Succeeded) {
-                        await UserManager.Instance.Login(user, false);
+                        await UserManager.Instance.Login(user);
 
                         // For more information on how to enable Login confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
@@ -304,5 +301,99 @@ namespace eos.Controllers
         }
 
         #endregion
+
+        //
+        // GET: /Account/ForgotPassword
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid) {
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id))) {
+                    ModelState.AddModelError("", "The user either does not exist or is not confirmed.");
+                    return View();
+                }
+
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                // Send an email with this link
+                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/ForgotPasswordConfirmation
+        [AllowAnonymous]
+        public ActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Account/ResetPassword
+        [AllowAnonymous]
+        public ActionResult ResetPassword(string code)
+        {
+            if (code == null) {
+                return View("Error");
+            }
+            return View();
+        }
+
+        //
+        // POST: /Account/ResetPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid) {
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user == null) {
+                    ModelState.AddModelError("", "No user found.");
+                    return View();
+                }
+                var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+                if (result.Succeeded) {
+                    return RedirectToAction("ResetPasswordConfirmation", "Login");
+                }
+
+                AddErrors(result);
+                return View();
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/ResetPasswordConfirmation
+        [AllowAnonymous]
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors) {
+                ModelState.AddModelError("", error);
+            }
+        }
     }
 }

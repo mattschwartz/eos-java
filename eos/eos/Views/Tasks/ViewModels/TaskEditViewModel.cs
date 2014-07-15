@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using eos.Models.CalendarEvents;
 using eos.Models.Documents;
-using eos.Models.Subjects;
 
 namespace eos.Views.Tasks.ViewModels
 {

@@ -6,7 +6,8 @@
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
-    if (loginProviders.Any())
+    var authenticationDescriptions = loginProviders as IList<AuthenticationDescription> ?? loginProviders.ToList();
+    if (authenticationDescriptions.Any())
     {
         <div>
             <p>There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
@@ -15,12 +16,12 @@
     }
     else
     {
-        using (Html.BeginForm(Model.Action, "Account", new {Model.ReturnUrl }))
+        using (Html.BeginForm(Model.Action, "Login", new {Model.ReturnUrl }))
         {
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
                 <p>
-                @foreach (var p in loginProviders)
+                @foreach (var p in authenticationDescriptions)
                 {
                     <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
                 }

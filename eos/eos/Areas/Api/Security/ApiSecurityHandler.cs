@@ -59,7 +59,7 @@ namespace eos.Areas.Api.Security
                         return tsc.Task;
                     }
                 } 
-            } catch (Exception ex) {
+            } catch (Exception) {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 

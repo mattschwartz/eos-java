@@ -28,7 +28,7 @@ namespace eos.Models.Users
             var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
 
             if (UserId != null) {
-                string xsrfKey = ConfigurationManager.AppSettings["XsrfKey"];
+                var xsrfKey = ConfigurationManager.AppSettings["XsrfKey"];
 
                 properties.Dictionary[xsrfKey] = UserId;
             }
