@@ -251,7 +251,6 @@
     <Compile Include="Tests\Data\SubjectTester.cs" />
     <Compile Include="Tests\Data\TaskTester.cs" />
     <Compile Include="Tests\TestBase.cs" />
-    <Compile Include="Tests\Data\UserTester.cs" />
     <Compile Include="Views\AutoMapperViewConfiguration.cs" />
     <Compile Include="Views\Subjects\ViewModels\SubjectEditViewModel.cs" />
     <Compile Include="Views\Subjects\ViewModels\SubjectListBoxViewModel.cs" />
@@ -260,15 +259,6 @@
     <Compile Include="Views\Tasks\ViewModels\TaskViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\eos-test.mdf" />
-    <Content Include="App_Data\eos-test_log.ldf">
-      <DependentUpon>eos-test.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\eos.mdf" />
-    <Content Include="App_Data\eos_log-test.ldf" />
-    <Content Include="App_Data\eos_log.ldf">
-      <DependentUpon>eos.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -282,8 +272,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="App_Data\eos-data.zip" />
-    <Content Include="App_Data\eos-test.zip" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -426,6 +414,10 @@
     <Content Include="Views\Login\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Login\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Login\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Login\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\Login\ForgotPassword.cshtml" />
+    <Content Include="Views\Login\ForgotPasswordConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

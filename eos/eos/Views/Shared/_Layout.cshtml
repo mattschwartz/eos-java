@@ -6,10 +6,6 @@
         <title>Eos</title>
         @Styles.Render("~/Content/css")
         @Styles.Render("~/Public/fullcalendar/fullcalendar.css")
-        
-        @Scripts.Render("~/Public/fullcalendar/lib/jquery.min.js")
-        @Scripts.Render("~/Public/fullcalendar/lib/moment.min.js")
-        @Scripts.Render("~/Public/fullcalendar/fullcalendar.js")
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -43,6 +39,9 @@
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/Scripts/jquery-2.1.1.js")
+        @Scripts.Render("~/Public/fullcalendar/lib/moment.min.js")
+        @Scripts.Render("~/Public/fullcalendar/fullcalendar.js")
         @RenderSection("scripts", required: false)
     </body>
 </html>

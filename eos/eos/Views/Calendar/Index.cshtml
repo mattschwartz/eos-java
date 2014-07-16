@@ -5,11 +5,16 @@
 <html>
     <head>
         <title>@ViewBag.Title</title>
-        
+        <link rel='stylesheet' href='~/Public/fullcalendar/fullcalendar.css' />
+        <script src='~/Public/fullcalendar/lib/jquery.min.js'></script>
+        <script src='~/Public/fullcalendar/lib/moment.min.js'></script>
+        <script src='~/Public/fullcalendar/fullcalendar.js'></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#calendar').fullCalendar({
-                    weekends: false
+                    selectable: true,
+                    dayClick: function () {
+                    }
                 });
             });
         </script>
