@@ -252,9 +252,12 @@
     <Compile Include="Tests\Data\TaskTester.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Views\AutoMapperViewConfiguration.cs" />
+    <Compile Include="Views\Calendar\ViewModels\EventEditViewModel.cs" />
+    <Compile Include="Views\Calendar\ViewModels\EventListBoxViewModel.cs" />
     <Compile Include="Views\Subjects\ViewModels\SubjectEditViewModel.cs" />
     <Compile Include="Views\Subjects\ViewModels\SubjectListBoxViewModel.cs" />
     <Compile Include="Views\Subjects\ViewModels\SubjectViewModel.cs" />
+    <Compile Include="Views\Tasks\ViewModels\TaskListBoxViewModel.cs" />
     <Compile Include="Views\Tasks\ViewModels\TaskEditViewModel.cs" />
     <Compile Include="Views\Tasks\ViewModels\TaskViewModel.cs" />
   </ItemGroup>
@@ -351,11 +354,37 @@
     <Content Include="Public\fullcalendar\lib\moment.min.js" />
     <Content Include="Public\fullcalendar\license.txt" />
     <Content Include="Public\img\eos-logo.png" />
+    <Content Include="Public\jquery-ui\external\jquery\jquery.js" />
+    <Content Include="Public\jquery-ui\images\animated-overlay.gif" />
+    <Content Include="Public\jquery-ui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Public\jquery-ui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Public\jquery-ui\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Public\jquery-ui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Public\jquery-ui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Public\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Public\jquery-ui\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Public\jquery-ui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Public\jquery-ui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Public\jquery-ui\images\ui-icons_222222_256x240.png" />
+    <Content Include="Public\jquery-ui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Public\jquery-ui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Public\jquery-ui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Public\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Public\jquery-ui\index.html" />
+    <Content Include="Public\jquery-ui\jquery-ui.css" />
+    <Content Include="Public\jquery-ui\jquery-ui.js" />
+    <Content Include="Public\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Public\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Public\jquery-ui\jquery-ui.structure.css" />
+    <Content Include="Public\jquery-ui\jquery-ui.structure.min.css" />
+    <Content Include="Public\jquery-ui\jquery-ui.theme.css" />
+    <Content Include="Public\jquery-ui\jquery-ui.theme.min.css" />
     <Content Include="Public\jscolor\arrow.gif" />
     <Content Include="Public\jscolor\cross.gif" />
     <Content Include="Public\jscolor\hs.png" />
     <Content Include="Public\jscolor\hv.png" />
     <Content Include="Public\jscolor\jscolor.js" />
+    <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -418,6 +447,7 @@
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Login\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Calendar\Event.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

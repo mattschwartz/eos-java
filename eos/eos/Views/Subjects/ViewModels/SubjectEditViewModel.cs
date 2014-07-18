@@ -16,7 +16,5 @@ namespace eos.Views.Subjects.ViewModels
         [Required]
         [Display(Name = "Color")]
         public String Color { get; set; }
-
-
     }
 }

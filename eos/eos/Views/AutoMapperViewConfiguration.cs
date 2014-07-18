@@ -23,6 +23,7 @@ namespace eos.Views
         {
             Mapper.CreateMap<Subject, SubjectViewModel>();
             Mapper.CreateMap<Subject, SubjectListBoxViewModel>();
+            Mapper.CreateMap<Task, TaskListBoxViewModel>();
         }
 
     }
