@@ -252,6 +252,7 @@
     <Compile Include="Tests\Data\TaskTester.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Views\AutoMapperViewConfiguration.cs" />
+    <Compile Include="Views\Calendar\ViewModels\CalendarEventTemplate.cs" />
     <Compile Include="Views\Calendar\ViewModels\EventEditViewModel.cs" />
     <Compile Include="Views\Calendar\ViewModels\EventListBoxViewModel.cs" />
     <Compile Include="Views\Subjects\ViewModels\SubjectEditViewModel.cs" />

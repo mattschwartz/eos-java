@@ -1,25 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Script.Serialization;
 using AutoMapper;
 using eos.Models.CalendarEvents;
-using eos.Models.Subjects;
+using eos.Models.Data;
 using eos.Models.Tasks;
 using eos.Views.Calendar.ViewModels;
 using eos.Views.Tasks.ViewModels;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace eos.Controllers
 {
     [Authorize]
     public class CalendarController : Controller
     {
-        // GET: Calendar
+        // GET: Index
         [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
+
+        #region Event
+
+        #region GET: Event
 
         // GET: Event
         [HttpGet]
@@ -33,6 +42,10 @@ namespace eos.Controllers
                 return View();
             }
         }
+
+        #endregion
+
+        #region POST: Event
 
         // POST: Event
         [HttpPost]
@@ -54,6 +67,11 @@ namespace eos.Controllers
             }
         }
 
+        #endregion
+
+        #region GET: EventData
+
+        // GET: EventData
         [HttpGet]
         public JsonResult EventData()
         {
@@ -67,11 +85,30 @@ namespace eos.Controllers
                         title = calendarEvent.Title,
                         start = calendarEvent.StartDate,
                         end = calendarEvent.EndDate,
-                        allday = true
+                        allday = true,
+                        color = calendarEvent.Color
                     };
 
                 return Json(results.ToArray(), JsonRequestBehavior.AllowGet);
             }
+        }
+
+        #endregion
+
+        #endregion
+
+        // POST: Update
+        [HttpPost]
+        public ActionResult Update(String id, String startDate, String endDate)
+        {
+            using (var context = new DataContext()) {
+                var calendarEvent = context.CalendarEvents.Find(id);
+                calendarEvent.StartDate = DateTime.Parse(startDate);
+                calendarEvent.EndDate = DateTime.Parse(endDate);
+                context.SaveChanges();
+            }
+
+            return View("Index");
         }
     }
 }

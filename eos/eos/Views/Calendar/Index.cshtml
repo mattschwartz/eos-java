@@ -14,6 +14,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#calendar').fullCalendar({
+                    editable: true,
                     events: '/Calendar/EventData/',
                     eventClick: function(calEvent, jsEvent, view) {
                         alert("you clicked on " + calEvent.title);
@@ -37,6 +38,26 @@
                                     }
                                 }
                             }
+                        });
+                    },
+                    eventDrop: function (event, delta, revertFunc) {
+                        $(function () {
+                            var eventData = {
+                                id: event.id,
+                                startDate: event.start,
+                                endDate: event.end,
+                            };
+
+                            $.ajax({
+                                url: '/Calendar/Update',
+                                data: JSON.stringify(eventData),
+                                contentType: "application/json",
+                                type: 'POST',
+                                success: function() {
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                }
+                            });
                         });
                     }
                 });
