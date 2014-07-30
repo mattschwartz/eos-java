@@ -5,6 +5,8 @@ namespace eos.Views.Calendar.ViewModels
 {
     public class EventEditViewModel
     {
+        public String Id { get; set; }
+
         [Required]
         public String Title { get; set; }
 

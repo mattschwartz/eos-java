@@ -1,4 +1,6 @@
-﻿@{
+﻿@model eos.Models.CalendarEvents.CalendarEvent
+
+@{
     ViewBag.Title = "Calendar";
 }
 
@@ -6,68 +8,121 @@
     <head>
         <title>@ViewBag.Title</title>
         <link rel='stylesheet' href='~/Public/fullcalendar/fullcalendar.css' />
+        <link rel="stylesheet" href="~/Public/jquery-ui/jquery-ui.css">
         <script src='~/Public/fullcalendar/lib/jquery.min.js'></script>
         <script src='~/Public/fullcalendar/lib/moment.min.js'></script>
         <script src='~/Public/fullcalendar/fullcalendar.js'></script>
         <script src='~/Scripts/bootstrap.js'></script>
         <script src='~/Scripts/bootbox.js'></script>
-        <script src='~/Scripts/jquery.simplemodal-1.4.4.js'></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#calendar').fullCalendar({
-                    editable: true,
-                    events: '/Calendar/EventData/',
-                    eventClick: function (calEvent, jsEvent, view) {
-                        $("#modal").modal();
-                    },
-                    dayClick: function (date, jsEvent, view) {
-                        bootbox.dialog({
-                            title: "Would you like to add an Event?",
-                            message: "Please select an option",
-                            buttons: {
-                                success: {
-                                    label: "Add Event!",
-                                    className: "add-event-button",
-                                    callback: function () {
-                                        window.location.href = "/Calendar/Event";
-                                    }
-                                },
-                                danger: {
-                                    label: "Cancel",
-                                    className: "cancel-button",
-                                    callback: function () {
-                                    }
-                                }
-                            }
-                        });
-                    },
-                    eventDrop: function (event, delta, revertFunc) {
-                        $(function () {
-                            var eventData = {
-                                id: event.id,
-                                startDate: event.start,
-                                endDate: event.end,
-                            };
-
-                            $.ajax({
-                                url: '/Calendar/Update',
-                                data: JSON.stringify(eventData),
-                                contentType: "application/json",
-                                type: 'POST',
-                                success: function() {
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                }
-                            });
-                        });
-                    }
-                });
-            });
-        </script>
     </head>
     <body>
-        <div id='calendar'></div>
+        <button id ="show-modal" name="show-modal" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#event-modal" style="visibility: hidden"></button>
 
-        <div id='modal'></div>
+        <div id='calendar'></div>
+        
+        
+        <div class="modal fade" id="event-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" id="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 id="modal-title" class="modal-title">Caution!</h4>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <section id="createEventForm">
+                            @using (Html.BeginForm("Event", "Calendar", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
+                                @Html.AntiForgeryToken();
+                                @Html.HiddenFor(model => model.Id, new { @id = "id" });
+                                
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.Title, new { @id = "title", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.Description, new { @id = "description", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.StartDate, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.StartDate, new { @id = "start", @class = "form-control datepicker" })
+                                        @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.EndDate, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.EndDate, new { @id = "end", @class = "form-control datepicker" })
+                                        @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                
+                                <hr />
+                                
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" name="Create" id="Create" class="btn btn-default">Save</button>
+
+                            }
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".datepicker").datepicker({});
+
+        $('#calendar').fullCalendar({
+            editable: true,
+            events: '/Calendar/EventData/',
+            eventClick: function (calEvent, jsEvent, view) {
+                document.getElementById("modal-title").innerHTML = "Modify an Event - " + calEvent.title;
+                document.getElementById('id').value = calEvent.id;
+                document.getElementById('title').value = calEvent.title;
+                document.getElementById('description').value = calEvent.desc;
+                document.getElementById('start').value = calEvent.start;
+                document.getElementById('end').value = calEvent.end;
+                $('#show-modal').click();
+            },
+            dayClick: function (date, jsEvent, view) {
+                document.getElementById("modal-title").innerHTML = "Create an Event";
+                document.getElementById('id').value = "";
+                document.getElementById('title').value = "";
+                document.getElementById('description').value = "";
+                document.getElementById('start').value = "";
+                document.getElementById('end').value = "";
+                $('#show-modal').click();
+            },
+            eventDrop: function (event, delta, revertFunc) {
+                $(function () {
+                    var eventData = {
+                        id: event.id,
+                        startDate: event.start,
+                        endDate: event.end,
+                    };
+
+                    $.ajax({
+                        url: '/Calendar/Update',
+                        data: JSON.stringify(eventData),
+                        contentType: "application/json",
+                        type: 'POST',
+                        success: function () {
+                        }
+                    });
+                });
+            }
+        });
+    });
+</script>

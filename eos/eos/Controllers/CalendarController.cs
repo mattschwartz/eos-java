@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Script.Serialization;
 using AutoMapper;
 using eos.Models.CalendarEvents;
 using eos.Models.Data;
@@ -12,7 +9,6 @@ using eos.Models.Tasks;
 using eos.Views.Calendar.ViewModels;
 using eos.Views.Tasks.ViewModels;
 using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
 
 namespace eos.Controllers
 {
@@ -23,7 +19,13 @@ namespace eos.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            using (var taskManager = new CalendarEventManager()) {
+                var tasks = taskManager.GetAll<Task>().Where(t => t.UserId == User.Identity.GetUserId()).ToList();
+                var taskResults = Mapper.Map<IEnumerable<Task>, IEnumerable<TaskListBoxViewModel>>(tasks);
+                ViewBag.tasks = tasks;
+
+                return View();
+            }
         }
 
         #region Event
@@ -50,21 +52,15 @@ namespace eos.Controllers
         // POST: Event
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Event(EventEditViewModel data)
+        public ActionResult Event(CalendarEvent data)
         {
             using (var calendarEventManager = new CalendarEventManager()) {
-                var calendarEvent = new CalendarEvent
-                {
-                    Title = data.Title,
-                    Description = data.Description,
-                    StartDate = data.StartDate,
-                    EndDate = data.EndDate,
-                    TaskId = data.TaskId
-                };
-                calendarEventManager.Save(calendarEvent);
-
-                return RedirectToAction("Index");
+                if (data.Id != null) {
+                    calendarEventManager.Save<CalendarEvent>(data);
+                }
             }
+
+            return RedirectToAction("Index");
         }
 
         #endregion
@@ -86,7 +82,8 @@ namespace eos.Controllers
                         start = calendarEvent.StartDate,
                         end = calendarEvent.EndDate,
                         allday = true,
-                        color = calendarEvent.Color
+                        color = calendarEvent.Color,
+                        desc = calendarEvent.Description
                     };
 
                 return Json(results.ToArray(), JsonRequestBehavior.AllowGet);
