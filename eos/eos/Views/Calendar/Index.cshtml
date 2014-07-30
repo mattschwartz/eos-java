@@ -11,12 +11,13 @@
         <script src='~/Public/fullcalendar/fullcalendar.js'></script>
         <script src='~/Scripts/bootstrap.js'></script>
         <script src='~/Scripts/bootbox.js'></script>
+        <script src='~/Scripts/jquery.simplemodal-1.4.4.js'></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#calendar').fullCalendar({
                     events: '/Calendar/EventData/',
-                    eventClick: function(calEvent, jsEvent, view) {
-                        alert("you clicked on " + calEvent.title);
+                    eventClick: function (calEvent, jsEvent, view) {
+                        $("#modal").modal();
                     },
                     dayClick: function (date, jsEvent, view) {
                         bootbox.dialog({
@@ -45,5 +46,7 @@
     </head>
     <body>
         <div id='calendar'></div>
+
+        <div id='modal'></div>
     </body>
 </html>
