@@ -1,9 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using eos.Models.Subjects;
-using eos.Models.Tasks;
-using eos.Models.Users;
 
 namespace eos.Views.Calendar.ViewModels
 {

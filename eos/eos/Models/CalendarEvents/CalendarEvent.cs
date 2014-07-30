@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using eos.Models.Data;
@@ -20,6 +21,7 @@ namespace eos.Models.CalendarEvents
         {
             CreatedOn = DateTime.Now;
             UpdatedOn = DateTime.Now;
+            Color = Color.Blue;
 
             if (HttpContext.Current != null && HttpContext.Current.User != null &&
                 HttpContext.Current.User.Identity != null &&
@@ -34,6 +36,9 @@ namespace eos.Models.CalendarEvents
 
         [Column("description")]
         public String Description { get; set; }
+
+        [Column("color")]
+        public Color Color { get; set; }
 
         [Column("start_date")]
         [DataType(DataType.DateTime)]
